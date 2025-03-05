@@ -9,7 +9,8 @@ module.exports = {
     'airbnb-typescript/base',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended-type-checked',
-    'prettier'
+    'prettier',
+    'plugin:unicorn/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -17,14 +18,14 @@ module.exports = {
     projectService: true,
     tsconfigRootDir: __dirname,
     sourceType: 'module',
-    ecmaVersion: 2021,
+    ecmaVersion: 'latest',
     createDefaultProgram: true,
     ecmaFeatures: {
       impliedStrict: true
     }
   },
-  plugins: ['@typescript-eslint', 'prettier', 'import'],
-  ignorePatterns: ['.eslintrc.js', 'webpack.config.js', 'index.html'],
+  plugins: ['@typescript-eslint', 'prettier', 'import', 'unicorn'],
+  ignorePatterns: ['.eslintrc.js', 'webpack.config.js', 'index.html', 'declarations.d.ts'],
   rules: {
     '@typescript-eslint/no-explicit-any': ['error'],
     'func-names': 'off',
