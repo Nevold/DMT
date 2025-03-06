@@ -8,6 +8,7 @@
     "dev": "webpack serve --env development",
     "lint": "eslint src",
     "prettier-format": "prettier src --write",
+    "stylelint": "stylelint \"**/*.css\"",
     "deploy": "gh-pages -d dist -a -e decision-making-tool"
   },
   "author": "all",
