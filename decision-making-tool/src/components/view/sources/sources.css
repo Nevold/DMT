@@ -10,7 +10,9 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  font: 300 1em 'Fira Sans', sans-serif;
+  font:
+    300 1em 'Fira Sans',
+    sans-serif;
   overflow: hidden;
   width: 300px;
   position: relative;
