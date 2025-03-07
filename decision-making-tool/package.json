@@ -10,7 +10,7 @@
     "prettier-format": "prettier src --write",
     "stylelint": "stylelint \"**/*.css\"",
     "deploy": "gh-pages -d dist -a -e decision-making-tool",
-    "prepare": "husky"
+    "prepare": "cd .. && husky decision-making-tool/.husky"
   },
   "lint-staged": {
     "*.{js,ts}": [
