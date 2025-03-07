@@ -2,7 +2,7 @@
   "name": "decision-making-tool",
   "version": "1.0.1",
   "description": "decision-making-tool template",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "webpack",
     "dev": "webpack serve --env development",
