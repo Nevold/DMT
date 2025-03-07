@@ -10,7 +10,7 @@
     "prettier-format": "prettier src --write",
     "stylelint": "stylelint \"**/*.css\"",
     "deploy": "gh-pages -d dist -a -e decision-making-tool",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -45,7 +45,7 @@
     "file-loader": "^6.2.0",
     "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.3",
-    "husky": "^8.0.3",
+    "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "mini-css-extract-plugin": "^2.9.2",
     "prettier": "^3.5.2",
