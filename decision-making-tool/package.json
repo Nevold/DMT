@@ -14,12 +14,12 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "eslint --fix",
+      "eslint",
       "prettier --write"
     ],
     "*.{css,scss}": [
       "stylelint \"**/*.css\"",
-      "prettier src --write"
+      "prettier --write"
     ]
   },
   "author": "all",
