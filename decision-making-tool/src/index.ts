@@ -6,4 +6,4 @@ app.start();
 
 console.log('object');
 
-var object = 1;
+var object = 2;
