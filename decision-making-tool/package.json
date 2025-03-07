@@ -24,6 +24,8 @@
   },
   "author": "all",
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "clean-webpack-plugin": "^4.0.0",
@@ -43,7 +45,7 @@
     "file-loader": "^6.2.0",
     "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.3",
-    "husky": "^9.1.7",
+    "husky": "^8.0.3",
     "lint-staged": "^15.4.3",
     "mini-css-extract-plugin": "^2.9.2",
     "prettier": "^3.5.2",
