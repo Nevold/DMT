@@ -14,16 +14,18 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "eslint --fix",
+      "eslint",
       "prettier --write"
     ],
     "*.{css,scss}": [
-      "stylelint --fix",
+      "stylelint \"**/*.css\"",
       "prettier --write"
     ]
   },
   "author": "all",
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "clean-webpack-plugin": "^4.0.0",
