@@ -67,7 +67,7 @@ module.exports = ({ development }) => ({
     // }),
     new HtmlWebpackPlugin({
       title: 'Decision Making Tool',
-      favicon: './public/favicon.ico'
+      favicon: './public/favicon.png'
     }),
     new CopyPlugin({
       patterns: [{ from: 'public' }]
