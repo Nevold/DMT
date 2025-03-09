@@ -5,9 +5,9 @@ import './global.css';
 // const app = new App();
 // app.start();
 
-const mainNode = main.getNode();
-const h1Node = h1.getNode();
-const listNode = list.getNode();
+const mainNode = main;
+const h1Node = h1;
+const listNode = list;
 const option = new BaseComponent('option', 'li').getNode();
 
 document.body.append(mainNode);

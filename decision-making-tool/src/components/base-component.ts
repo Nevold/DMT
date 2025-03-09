@@ -34,4 +34,8 @@ export class BaseComponent {
   public destroyNode(): void {
     this.node.remove();
   }
+
+  public setAttribute(atrr: string): void {
+    this.node.setAttribute('for', `option${atrr}`);
+  }
 }
