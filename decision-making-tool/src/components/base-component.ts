@@ -1,5 +1,7 @@
+import type { NodeType, Options } from '../types/types';
+
 export class BaseComponent {
-  private readonly node: HTMLElement;
+  private readonly node: NodeType;
 
   constructor(classes: string[] | string, tag: keyof HTMLElementTagNameMap = 'div', content: string = '') {
     this.node = document.createElement(tag);
@@ -11,7 +13,7 @@ export class BaseComponent {
     this.node.textContent = content;
   }
 
-  public getNode(): HTMLElement {
+  public getNode(): NodeType {
     return this.node;
   }
 
@@ -35,7 +37,12 @@ export class BaseComponent {
     this.node.remove();
   }
 
-  public setAttribute(atrr: string): void {
-    this.node.setAttribute('for', `option${atrr}`);
+  public setAttributeOptions(atrr: string, value: string): void {
+    this.node.setAttribute(atrr, `option${value}`);
+  }
+
+  public setAttributes(attributes: Options): void {
+    const atrr = Object.keys(attributes);
+    atrr.forEach(key => this.node.setAttribute(key, attributes[key]));
   }
 }

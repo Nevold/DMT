@@ -43,7 +43,8 @@ module.exports = {
       { accessibility: 'explicit', overrides: { constructors: 'off' } }
     ],
     '@typescript-eslint/member-ordering': 'error',
-    'class-methods-use-this': 'error'
+    'class-methods-use-this': 'error',
+    'unicorn/no-array-for-each': 'off'
   },
   noInlineConfig: true,
   reportUnusedDisableDirectives: true
