@@ -31,3 +31,9 @@ export const buttonDelete = (): NodeType => {
   buttonIntanceValue.getNode().addEventListener('click', () => console.log('Click!'));
   return buttonIntanceValue.getNode();
 };
+
+export const li = (id: string): NodeType => {
+  const buttonIntanceValue = new BaseComponent('option', 'li');
+  buttonIntanceValue.getNode().append(label(id), inputTitle(id), inputWeight(), buttonDelete());
+  return buttonIntanceValue.getNode();
+};
