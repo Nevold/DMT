@@ -25,7 +25,7 @@ module.exports = {
     }
   },
   plugins: ['@typescript-eslint', 'prettier', 'import', 'unicorn'],
-  ignorePatterns: ['.eslintrc.js', 'webpack.config.js', 'index.html', 'declarations.d.ts'],
+  ignorePatterns: ['.eslintrc.js', 'webpack.config.js', 'index.html', 'declarations.d.ts', 'commitlint.config.js'],
   rules: {
     '@typescript-eslint/no-explicit-any': ['error'],
     'func-names': 'off',
