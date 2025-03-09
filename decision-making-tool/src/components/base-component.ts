@@ -1,13 +1,14 @@
 export class BaseComponent {
   private readonly node: HTMLElement;
 
-  constructor(classes: string[] | string, tag: keyof HTMLElementTagNameMap = 'div') {
+  constructor(classes: string[] | string, tag: keyof HTMLElementTagNameMap = 'div', content: string = '') {
     this.node = document.createElement(tag);
     if (typeof classes === 'string') {
       this.node.classList.add(classes);
     } else {
       this.node.classList.add(...classes);
     }
+    this.node.textContent = content;
   }
 
   public getNode(): HTMLElement {
