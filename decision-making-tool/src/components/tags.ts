@@ -1,6 +1,14 @@
 import type { NodeType } from '../types/types';
 import { BaseComponent } from './base-component';
 
+const database = {
+  list: [
+    { id: '#1', title: '1', weight: '1' },
+    { id: '#3', title: '', weight: '' }
+  ],
+  lastId: 3
+};
+
 class Tags {
   public static readonly main = new BaseComponent('main', 'div').getNode();
 

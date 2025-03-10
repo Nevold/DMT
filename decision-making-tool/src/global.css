@@ -65,7 +65,7 @@ textarea {
   display: flex;
   gap: 1rem;
   align-items: center;
-  padding: 0.1rem 0.4rem;
+  padding: 0.1rem 0.8rem;
   border-radius: 0.5rem;
   background-image: linear-gradient(var(--color-primary-300), var(--color-primary-700));
 }
