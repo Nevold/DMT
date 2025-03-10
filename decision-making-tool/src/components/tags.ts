@@ -16,6 +16,11 @@ export const label = (value: string): NodeType => {
 export const inputTitle = (value: string): NodeType => {
   const inputIntanceValue = new BaseComponent('title', 'input');
   inputIntanceValue.setAttributes({ id: `option-${value}`, placeholder: 'Title' });
+  inputIntanceValue.getNode().addEventListener('input', eventInput => {
+    if (eventInput.target instanceof HTMLInputElement) {
+      console.log(eventInput.target.value);
+    }
+  });
   return inputIntanceValue.getNode();
 };
 
