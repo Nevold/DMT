@@ -38,7 +38,38 @@ export const buttonDelete = (): NodeType => {
 };
 
 export const li = (id: string): NodeType => {
-  const buttonIntanceValue = new BaseComponent('option', 'li');
-  buttonIntanceValue.getNode().append(label(id), inputTitle(id), inputWeight(), buttonDelete());
+  const liIntanceValue = new BaseComponent('option', 'li');
+  liIntanceValue.getNode().append(label(id), inputTitle(id), inputWeight(), buttonDelete());
+  return liIntanceValue.getNode();
+};
+
+export const addOptionButton = (): NodeType => {
+  const buttonIntanceValue = new BaseComponent('button', 'button', 'Add Option');
   return buttonIntanceValue.getNode();
+};
+
+export const pasteListButton = (): NodeType => {
+  const buttonIntanceValue = new BaseComponent('button', 'button', 'Paste list');
+  return buttonIntanceValue.getNode();
+};
+
+export const clearListButton = (): NodeType => {
+  const buttonIntanceValue = new BaseComponent('button', 'button', 'Clear list');
+  return buttonIntanceValue.getNode();
+};
+
+export const saveListButton = (): NodeType => {
+  const buttonIntanceValue = new BaseComponent(['button', 'wrapper-button'], 'button', 'Save list to file');
+  return buttonIntanceValue.getNode();
+};
+
+export const loadListButton = (): NodeType => {
+  const buttonIntanceValue = new BaseComponent(['button', 'wrapper-button'], 'button', 'Load list from file');
+  return buttonIntanceValue.getNode();
+};
+
+export const wrapper = (): NodeType => {
+  const wrapperIntanceValue = new BaseComponent('wrapper', 'div');
+  wrapperIntanceValue.getNode().append(saveListButton(), loadListButton());
+  return wrapperIntanceValue.getNode();
 };

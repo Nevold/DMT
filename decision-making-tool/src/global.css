@@ -26,6 +26,17 @@ body {
   background-color: var(--color-primary-500);
 }
 
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+}
+
 /* ---------------------move */
 .main {
   display: flex;
@@ -99,6 +110,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0.5rem 0;
   padding: 0.5rem;
   border: none;
   border-radius: 0.25rem;
@@ -107,6 +119,15 @@ body {
   box-shadow: 0 0 0.25rem 0.1rem var(--color-primary-200);
   transition-duration: var(--transition-duration);
   transition-property: filter, box-shadow, opacity;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper-button {
+  width: 100%;
 }
 
 /* .title:active,
