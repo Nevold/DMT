@@ -6,7 +6,7 @@ import Tags from './components/tags';
 
 const mainNode = Tags.main;
 const h1Node = Tags.h1;
-const listNode = Tags.list;
+const listNode = Tags.list();
 // const Tags.option = new BaseComponent('option', 'li').getNode();
 
 document.body.append(mainNode);
@@ -19,4 +19,4 @@ mainNode.append(
   Tags.wrapper(),
   Tags.startButton()
 );
-listNode.append(Tags.li('#1'));
+// listNode.append(Tags.li('#1'));

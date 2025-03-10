@@ -4,7 +4,7 @@ import { BaseComponent } from './base-component';
 const database = {
   list: [
     { id: '#1', title: '1', weight: '1' },
-    { id: '#3', title: '', weight: '' }
+    { id: '#3', title: '3', weight: '3' }
   ],
   lastId: 3
 };
@@ -14,7 +14,12 @@ class Tags {
 
   public static readonly h1 = new BaseComponent('heading', 'h1', 'Decision Making Tool').getNode();
 
-  public static readonly list = new BaseComponent('list', 'ul').getNode();
+  public static readonly list = (): NodeType => {
+    const listInstance = new BaseComponent('list', 'ul').getNode();
+    const nodelist = database.list.map(node => this.li(node.id));
+    listInstance.append(...nodelist);
+    return listInstance;
+  };
 
   public static readonly label = (value: string): NodeType => {
     const labelIntanceValue = new BaseComponent('label', 'label', value);
