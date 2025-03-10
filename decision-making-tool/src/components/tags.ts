@@ -73,3 +73,8 @@ export const wrapper = (): NodeType => {
   wrapperIntanceValue.getNode().append(saveListButton(), loadListButton());
   return wrapperIntanceValue.getNode();
 };
+
+export const startButton = (): NodeType => {
+  const buttonIntanceValue = new BaseComponent('button', 'button', 'Start');
+  return buttonIntanceValue.getNode();
+};
