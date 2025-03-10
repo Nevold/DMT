@@ -35,6 +35,13 @@ class Tags {
     inputIntanceValue.getNode().addEventListener('input', eventInput => {
       if (eventInput.target instanceof HTMLInputElement) {
         console.log(eventInput.target.value);
+        if (eventInput.target instanceof HTMLInputElement) {
+          // console.log(eventInput.target.value);
+          const id = inputIntanceValue.getAttribute('id');
+          if (id) {
+            const idValue = id.split('option-').pop();
+          }
+        }
       }
     });
     return inputIntanceValue.getNode();

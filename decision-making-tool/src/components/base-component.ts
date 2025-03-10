@@ -45,4 +45,6 @@ export class BaseComponent {
     const atrr = Object.keys(attributes);
     atrr.forEach(key => this.node.setAttribute(key, attributes[key]));
   }
+
+  public getAttribute = (key: string): string | null => this.node.getAttribute(key);
 }
