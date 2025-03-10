@@ -4,7 +4,9 @@ import { BaseComponent } from './base-component';
 const database = {
   list: [
     { id: '#1', title: '1', weight: '1' },
-    { id: '#3', title: '3', weight: '3' }
+    { id: '#3', title: '3sdad', weight: '10' },
+    { id: '#4', title: 'aasd3', weight: '10' },
+    { id: '#5', title: 'aaa3', weight: '10' }
   ],
   lastId: 3
 };
@@ -16,7 +18,7 @@ class Tags {
 
   public static readonly list = (): NodeType => {
     const listInstance = new BaseComponent('list', 'ul').getNode();
-    const nodelist = database.list.map(node => this.li(node.id));
+    const nodelist = database.list.map(node => this.li(node.id, node.title, node.weight));
     listInstance.append(...nodelist);
     return listInstance;
   };
@@ -27,9 +29,9 @@ class Tags {
     return labelIntanceValue.getNode();
   };
 
-  public static readonly inputTitle = (value: string): NodeType => {
+  public static readonly inputTitle = (value: string, title: string = ''): NodeType => {
     const inputIntanceValue = new BaseComponent('title', 'input');
-    inputIntanceValue.setAttributes({ id: `option-${value}`, placeholder: 'Title' });
+    inputIntanceValue.setAttributes({ id: `option-${value}`, placeholder: 'Title', value: title });
     inputIntanceValue.getNode().addEventListener('input', eventInput => {
       if (eventInput.target instanceof HTMLInputElement) {
         console.log(eventInput.target.value);
@@ -38,10 +40,18 @@ class Tags {
     return inputIntanceValue.getNode();
   };
 
-  public static readonly inputWeight = (): NodeType => {
+  public static readonly inputWeight = (weight: string = ''): NodeType => {
     const inputIntanceValue = new BaseComponent('weight', 'input');
-    inputIntanceValue.setAttributes({ placeholder: 'Weight', type: 'number' });
+    inputIntanceValue.setAttributes({ placeholder: 'Weight', type: 'number', value: weight });
     return inputIntanceValue.getNode();
+  };
+
+  public static readonly li = (id: string, title: string = '', weight: string = ''): NodeType => {
+    const liIntanceValue = new BaseComponent('option', 'li');
+    liIntanceValue
+      .getNode()
+      .append(this.label(id), this.inputTitle(id, title), this.inputWeight(weight), this.buttonDelete());
+    return liIntanceValue.getNode();
   };
 
   public static readonly buttonDelete = (): NodeType => {
@@ -49,12 +59,6 @@ class Tags {
     buttonIntanceValue.setAttributes({ type: 'button' });
     buttonIntanceValue.getNode().addEventListener('click', () => console.log('Click!'));
     return buttonIntanceValue.getNode();
-  };
-
-  public static readonly li = (id: string): NodeType => {
-    const liIntanceValue = new BaseComponent('option', 'li');
-    liIntanceValue.getNode().append(this.label(id), this.inputTitle(id), this.inputWeight(), this.buttonDelete());
-    return liIntanceValue.getNode();
   };
 
   public static readonly addOptionButton = (): NodeType => {
