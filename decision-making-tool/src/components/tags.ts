@@ -44,12 +44,12 @@ class Tags {
           const currentElementArray = StorageService.data.list.find(element => element.id === idValue);
           if (currentElementArray) {
             currentElementArray.title = eventInput.target.value;
+            const storageData = {
+              list: [...StorageService.data.list.filter(element => element.id !== idValue), currentElementArray],
+              lastId: StorageService.data.lastId
+            };
+            StorageService.saveData(storageData);
           }
-          const storageData = {
-            list: [...StorageService.data.list.filter(element => element.id !== idValue), currentElementArray],
-            lastId: StorageService.data.lastId
-          };
-          // StorageService.saveData(storageData)
         }
       }
     });
