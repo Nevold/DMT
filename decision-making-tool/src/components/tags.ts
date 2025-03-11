@@ -16,6 +16,8 @@ const database = {
 class Tags {
   public static childrenList: NodeType[] = [];
 
+  public static listNode: NodeType;
+
   public static readonly main = new BaseComponent('main', 'div').getNode();
 
   public static readonly h1 = new BaseComponent('heading', 'h1', 'Decision Making Tool').getNode();
@@ -23,10 +25,10 @@ class Tags {
   public static readonly list = (): NodeType => {
     StorageService.getData();
 
-    const listInstance = new BaseComponent('list', 'ul').getNode();
+    this.listNode = new BaseComponent('list', 'ul').getNode();
     this.childrenList = StorageService.data.list.map(node => this.li(node.id, node.title, node.weight));
-    listInstance.append(...this.childrenList);
-    return listInstance;
+    this.listNode.append(...this.childrenList);
+    return this.listNode;
   };
 
   public static readonly label = (value: string): NodeType => {
@@ -111,6 +113,19 @@ class Tags {
 
   public static readonly addOptionButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent('button', 'button', 'Add Option');
+
+    buttonIntanceValue.getNode().addEventListener('click', event => {
+      if (event.target && event.target instanceof HTMLButtonElement) {
+        const nextIdElement = StorageService.data.list.length + 1;
+        StorageService.data.list.push({ id: `#${nextIdElement}`, title: '', weight: '' });
+        const storageData = {
+          list: StorageService.data.list,
+          lastId: nextIdElement
+        };
+        StorageService.saveData(Utils.sortById(storageData));
+        this.listNode.append(this.li(`#${nextIdElement}`));
+      }
+    });
     return buttonIntanceValue.getNode();
   };
 
