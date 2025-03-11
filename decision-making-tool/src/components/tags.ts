@@ -1,3 +1,4 @@
+import { StorageService } from '../services/local-storage.service';
 import type { NodeType } from '../types/types';
 import { BaseComponent } from './base-component';
 
@@ -17,8 +18,10 @@ class Tags {
   public static readonly h1 = new BaseComponent('heading', 'h1', 'Decision Making Tool').getNode();
 
   public static readonly list = (): NodeType => {
+    StorageService.getData();
+
     const listInstance = new BaseComponent('list', 'ul').getNode();
-    const nodelist = database.list.map(node => this.li(node.id, node.title, node.weight));
+    const nodelist = StorageService.data.list.map(node => this.li(node.id, node.title, node.weight));
     listInstance.append(...nodelist);
     return listInstance;
   };

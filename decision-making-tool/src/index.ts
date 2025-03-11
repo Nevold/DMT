@@ -32,7 +32,7 @@ StorageService.saveData({
   lastId: 3
 });
 
-StorageService.getDatabase();
+StorageService.getData();
 // if (StorageService.data.list[0].id==="string"){
 
 console.log(StorageService.data.list[0].id);

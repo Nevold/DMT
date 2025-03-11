@@ -1,13 +1,4 @@
-// import type { Database } from '../types/types';
-
-export interface Database {
-  list: {
-    id: string;
-    title: string;
-    weight: string;
-  }[];
-  lastId: number;
-}
+import type { Database } from '../types/types';
 
 export class StorageService {
   public static data: Database = { list: [{ id: '#1', title: '', weight: '' }], lastId: 1 };
@@ -43,7 +34,7 @@ export class StorageService {
     localStorage.setItem('decisionList', JSON.stringify(data));
   };
 
-  public static readonly getDatabase = (): void => {
+  public static readonly getData = (): void => {
     const localData = localStorage.getItem('decisionList');
     if (localData) {
       const parsedData = JSON.parse(localData);
