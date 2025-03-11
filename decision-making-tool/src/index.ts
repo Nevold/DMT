@@ -1,6 +1,6 @@
 import './global.css';
 import Tags from './components/tags';
-import StorageService from './services/local-storage.service';
+import { StorageService } from './services/local-storage.service';
 
 // const app = new App();
 // app.start();
@@ -22,7 +22,19 @@ mainNode.append(
 );
 // listNode.append(Tags.li('#1'));
 
-StorageService.saveData({ list: 'dd', lastId: 5 });
+StorageService.saveData({
+  list: [
+    { id: '#1', title: '1', weight: '1' },
+    { id: '#3', title: '3sdad', weight: '10' },
+    { id: '#4', title: 'aasd3', weight: '10' },
+    { id: '#5', title: 'aaa3', weight: '10' }
+  ],
+  lastId: 3
+});
 
 StorageService.getDatabase();
-console.log(StorageService.data.list);
+// if (StorageService.data.list[0].id==="string"){
+
+console.log(StorageService.data.list[0].id);
+// }
+StorageService.data.list.forEach(element => console.log(element.id));
