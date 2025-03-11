@@ -1,6 +1,7 @@
 import './global.css';
 import Tags from './components/tags';
 import { StorageService } from './services/local-storage.service';
+import { Database } from './types/types';
 
 // const app = new App();
 // app.start();
@@ -31,6 +32,27 @@ mainNode.append(
 //   ],
 //   lastId: 3
 // });
+
+// function sortById(data: Database): Database {
+//   data.list.sort((a, b) => {
+//     const firstId = Number([...a.id].pop());
+//     const secondId = Number([...b.id].pop());
+//     return firstId - secondId;
+//   });
+//   return data;
+// }
+
+// console.log(
+//   sortById({
+//     list: [
+//       { id: '#1', title: '1', weight: '1' },
+//       { id: '#5', title: '3sdad', weight: '10' },
+//       { id: '#4', title: 'aasd3', weight: '10' },
+//       { id: '#2', title: 'aaa3', weight: '10' }
+//     ],
+//     lastId: 3
+//   })
+// );
 
 StorageService.getData();
 // if (StorageService.data.list[0].id==="string"){

@@ -1,6 +1,7 @@
 import { StorageService } from '../services/local-storage.service';
 import type { Database, NodeType } from '../types/types';
 import { BaseComponent } from './base-component';
+import { Utils } from '../shared/utils/utils';
 
 const database = {
   list: [
@@ -13,6 +14,8 @@ const database = {
 };
 
 class Tags {
+  public static childrenList: NodeType[] = [];
+
   public static readonly main = new BaseComponent('main', 'div').getNode();
 
   public static readonly h1 = new BaseComponent('heading', 'h1', 'Decision Making Tool').getNode();
@@ -21,8 +24,8 @@ class Tags {
     StorageService.getData();
 
     const listInstance = new BaseComponent('list', 'ul').getNode();
-    const nodelist = StorageService.data.list.map(node => this.li(node.id, node.title, node.weight));
-    listInstance.append(...nodelist);
+    this.childrenList = StorageService.data.list.map(node => this.li(node.id, node.title, node.weight));
+    listInstance.append(...this.childrenList);
     return listInstance;
   };
 
@@ -47,7 +50,7 @@ class Tags {
               list: [...StorageService.data.list.filter(element => element.id !== idValue), currentElementArray],
               lastId: StorageService.data.lastId
             };
-            StorageService.saveData(storageData);
+            StorageService.saveData(Utils.sortById(storageData));
           }
         }
       }
@@ -70,7 +73,7 @@ class Tags {
               list: [...StorageService.data.list.filter(element => element.id !== idValue), currentElementArray],
               lastId: StorageService.data.lastId
             };
-            StorageService.saveData(storageData);
+            StorageService.saveData(Utils.sortById(storageData));
           }
         }
       }
@@ -82,14 +85,27 @@ class Tags {
     const liIntanceValue = new BaseComponent('option', 'li');
     liIntanceValue
       .getNode()
-      .append(this.label(id), this.inputTitle(id, title), this.inputWeight(id, weight), this.buttonDelete());
+      .append(this.label(id), this.inputTitle(id, title), this.inputWeight(id, weight), this.buttonDelete(id));
     return liIntanceValue.getNode();
   };
 
-  public static readonly buttonDelete = (): NodeType => {
+  public static readonly buttonDelete = (value: string): NodeType => {
     const buttonIntanceValue = new BaseComponent('button', 'button', 'Delete');
-    buttonIntanceValue.setAttributes({ type: 'button' });
-    buttonIntanceValue.getNode().addEventListener('click', () => console.log('Click!'));
+    buttonIntanceValue.setAttributes({ id: `option-${value}`, type: 'button' });
+    buttonIntanceValue.getNode().addEventListener('click', event => {
+      if (event.target && event.target instanceof HTMLButtonElement) {
+        const id = event.target.getAttribute('id');
+        if (id) {
+          const idValue = id.split('option-').pop();
+          const storageData = {
+            list: StorageService.data.list.filter(element => element.id !== idValue),
+            lastId: StorageService.data.lastId
+          };
+          StorageService.saveData(Utils.sortById(storageData));
+          event.target.parentElement?.remove();
+        }
+      }
+    });
     return buttonIntanceValue.getNode();
   };
 
