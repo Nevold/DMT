@@ -35,6 +35,6 @@ StorageService.saveData({
 StorageService.getData();
 // if (StorageService.data.list[0].id==="string"){
 
-console.log(StorageService.data.list[0].id);
+// console.log(StorageService.data.list[0].id);
 // }
-StorageService.data.list.forEach(element => console.log(element.id));
+// StorageService.data.list.forEach(element => console.log(element.id));

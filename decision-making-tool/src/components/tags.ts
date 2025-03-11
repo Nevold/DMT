@@ -1,5 +1,5 @@
 import { StorageService } from '../services/local-storage.service';
-import type { NodeType } from '../types/types';
+import type { Database, NodeType } from '../types/types';
 import { BaseComponent } from './base-component';
 
 const database = {
@@ -37,13 +37,19 @@ class Tags {
     inputIntanceValue.setAttributes({ id: `option-${value}`, placeholder: 'Title', value: title });
     inputIntanceValue.getNode().addEventListener('input', eventInput => {
       if (eventInput.target instanceof HTMLInputElement) {
-        console.log(eventInput.target.value);
-        if (eventInput.target instanceof HTMLInputElement) {
-          // console.log(eventInput.target.value);
-          const id = inputIntanceValue.getAttribute('id');
-          if (id) {
-            const idValue = id.split('option-').pop();
+        // console.log(eventInput.target.value);
+        const id = inputIntanceValue.getAttribute('id');
+        if (id) {
+          const idValue = id.split('option-').pop();
+          const currentElementArray = StorageService.data.list.find(element => element.id === idValue);
+          if (currentElementArray) {
+            currentElementArray.title = eventInput.target.value;
           }
+          const storageData = {
+            list: [...StorageService.data.list.filter(element => element.id !== idValue), currentElementArray],
+            lastId: StorageService.data.lastId
+          };
+          // StorageService.saveData(storageData)
         }
       }
     });
