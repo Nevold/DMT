@@ -1,5 +1,6 @@
 import './global.css';
 import Tags from './components/tags';
+import StorageService from './services/local-storage.service';
 
 // const app = new App();
 // app.start();
@@ -20,3 +21,8 @@ mainNode.append(
   Tags.startButton()
 );
 // listNode.append(Tags.li('#1'));
+
+StorageService.saveData({ list: 'dd', lastId: 5 });
+
+StorageService.getDatabase();
+console.log(StorageService.data.list);

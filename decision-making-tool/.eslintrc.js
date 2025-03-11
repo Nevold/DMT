@@ -44,7 +44,8 @@ module.exports = {
     ],
     '@typescript-eslint/member-ordering': 'error',
     'class-methods-use-this': 'error',
-    'unicorn/no-array-for-each': 'off'
+    'unicorn/no-array-for-each': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off'
   },
   noInlineConfig: true,
   reportUnusedDisableDirectives: true
