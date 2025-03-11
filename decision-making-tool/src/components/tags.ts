@@ -37,7 +37,6 @@ class Tags {
     inputIntanceValue.setAttributes({ id: `option-${value}`, placeholder: 'Title', value: title });
     inputIntanceValue.getNode().addEventListener('input', eventInput => {
       if (eventInput.target instanceof HTMLInputElement) {
-        // console.log(eventInput.target.value);
         const id = inputIntanceValue.getAttribute('id');
         if (id) {
           const idValue = id.split('option-').pop();
@@ -56,9 +55,26 @@ class Tags {
     return inputIntanceValue.getNode();
   };
 
-  public static readonly inputWeight = (weight: string = ''): NodeType => {
+  public static readonly inputWeight = (value: string, weight: string = ''): NodeType => {
     const inputIntanceValue = new BaseComponent('weight', 'input');
-    inputIntanceValue.setAttributes({ placeholder: 'Weight', type: 'number', value: weight });
+    inputIntanceValue.setAttributes({ id: `option-${value}`, placeholder: 'Weight', type: 'number', value: weight });
+    inputIntanceValue.getNode().addEventListener('input', eventInput => {
+      if (eventInput.target instanceof HTMLInputElement) {
+        const id = inputIntanceValue.getAttribute('id');
+        if (id) {
+          const idValue = id.split('option-').pop();
+          const currentElementArray = StorageService.data.list.find(element => element.id === idValue);
+          if (currentElementArray) {
+            currentElementArray.weight = eventInput.target.value;
+            const storageData = {
+              list: [...StorageService.data.list.filter(element => element.id !== idValue), currentElementArray],
+              lastId: StorageService.data.lastId
+            };
+            StorageService.saveData(storageData);
+          }
+        }
+      }
+    });
     return inputIntanceValue.getNode();
   };
 
@@ -66,7 +82,7 @@ class Tags {
     const liIntanceValue = new BaseComponent('option', 'li');
     liIntanceValue
       .getNode()
-      .append(this.label(id), this.inputTitle(id, title), this.inputWeight(weight), this.buttonDelete());
+      .append(this.label(id), this.inputTitle(id, title), this.inputWeight(id, weight), this.buttonDelete());
     return liIntanceValue.getNode();
   };
 
