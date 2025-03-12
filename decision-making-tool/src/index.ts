@@ -19,7 +19,7 @@ mainNode.append(
   Tags.clearListButton(),
   Tags.wrapper(),
   Tags.startButton(),
-  Dialog.dialogNode
+  Dialog.dialog()
 );
 // listNode.append(Tags.li('#1'));
 
