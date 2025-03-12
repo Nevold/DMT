@@ -5,13 +5,17 @@ export class Dialog {
   public static readonly dialogNode = new BaseComponent('dialog', 'dialog').getNode();
 
   public static readonly textarea = (): NodeType => {
-    const formIntanceValue = new BaseComponent('textarea', 'textarea');
-    formIntanceValue.setAttributes({
-      rows: '12',
-      cols: '64',
-      placeholder: 'Paste a list of new options in a CSV-like format:'
-    });
-    return formIntanceValue.getNode();
+    const textareaIntanceValue = new BaseComponent('textarea', 'textarea');
+    const textareaNode = textareaIntanceValue.getNode();
+    if (textareaNode instanceof HTMLTextAreaElement) {
+      textareaIntanceValue.setAttributes({
+        rows: '12',
+        cols: '64'
+      });
+      textareaNode.placeholder = 'Paste a list of new options in a CSV-like format';
+    }
+
+    return textareaNode;
   };
 
   public static readonly form = (): NodeType => {
