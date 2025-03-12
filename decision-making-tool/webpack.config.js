@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 
 const devServer = isDev =>
   !isDev
@@ -72,8 +71,7 @@ module.exports = ({ development }) => ({
     new CopyPlugin({
       patterns: [{ from: 'public' }]
     }),
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-    new Dotenv()
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false })
   ],
   resolve: {
     extensions: ['.ts', '.js']
