@@ -54,7 +54,7 @@ mainNode.append(
 //   })
 // );
 
-StorageService.getData();
+// StorageService.getData();
 // if (StorageService.data.list[0].id==="string"){
 
 // console.log(StorageService.data.list[0].id);

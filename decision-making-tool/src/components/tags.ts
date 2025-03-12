@@ -103,6 +103,7 @@ class Tags {
             list: StorageService.data.list.filter(element => element.id !== idValue),
             lastId: StorageService.data.lastId
           };
+          StorageService.data = Utils.sortById(storageData);
           StorageService.saveData(Utils.sortById(storageData));
           event.target.parentElement?.remove();
         }
@@ -116,12 +117,13 @@ class Tags {
 
     buttonIntanceValue.getNode().addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
-        const nextIdElement = StorageService.data.list.length + 1;
+        const nextIdElement = StorageService.data.lastId + 1;
         StorageService.data.list.push({ id: `#${nextIdElement}`, title: '', weight: '' });
         const storageData = {
           list: StorageService.data.list,
           lastId: nextIdElement
         };
+        StorageService.data = Utils.sortById(storageData);
         StorageService.saveData(Utils.sortById(storageData));
         this.listNode.append(this.li(`#${nextIdElement}`));
       }
