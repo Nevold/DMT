@@ -42,8 +42,11 @@ export class Dialog {
             }
             return value;
           })
-          .map(element => element.map(item => item?.trim()));
-        console.log(optionsList);
+          .map(element => element.map(item => item?.trim()))
+          .filter(element => Number(element[1]));
+
+        const storageOptionsList = optionsList.map(item => ({ id: '31', title: item[0], weight: item[1] }));
+        console.log(storageOptionsList); // доделать
       }
     });
 
