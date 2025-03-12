@@ -4,7 +4,9 @@ import { BaseComponent } from '../base-component';
 export class Dialog {
   public static readonly dialogNode = new BaseComponent('dialog', 'dialog').getNode();
 
-  public static textareaNode = new BaseComponent('textarea', 'textarea').getNode();
+  public static readonly textareaNode = new BaseComponent('textarea', 'textarea').getNode();
+
+  public static readonly formNode = new BaseComponent('container', 'form').getNode();
 
   public static readonly textarea = (): NodeType => {
     if (this.textareaNode instanceof HTMLTextAreaElement) {
@@ -23,14 +25,35 @@ export class Dialog {
 
   public static readonly confirm = (): NodeType => {
     const buttonIntanceValue = new BaseComponent(['button', 'confirm'], 'button', 'Confirm');
+
+    buttonIntanceValue.getNode().addEventListener('click', () => {
+      if (this.formNode instanceof HTMLFormElement && this.formNode.elements[0] instanceof HTMLTextAreaElement) {
+        const arrayValue = this.formNode.elements[0].value
+          .split('\n')
+          .filter(Boolean)
+          .map(element => element.trim());
+        const optionsList = arrayValue
+          .map(element => element.split(','))
+          .map(value => {
+            if (value.length > 2) {
+              const lastElement = value.at(-1);
+              const arrayWithoutLast = value.slice(0, -1);
+              return [arrayWithoutLast.join(','), lastElement];
+            }
+            return value;
+          })
+          .map(element => element.map(item => item?.trim()));
+        console.log(optionsList);
+      }
+    });
+
     this.closeDialog(buttonIntanceValue);
     return buttonIntanceValue.getNode();
   };
 
   public static readonly form = (): NodeType => {
-    const formIntanceValue = new BaseComponent('container', 'form');
-    formIntanceValue.getNode().append(this.textarea(), this.cancel(), this.confirm());
-    return formIntanceValue.getNode();
+    this.formNode.append(this.textarea(), this.cancel(), this.confirm());
+    return this.formNode;
   };
 
   public static readonly dialog = (): NodeType => {
@@ -48,7 +71,7 @@ export class Dialog {
       if (event.target && event.target instanceof HTMLButtonElement && this.dialogNode instanceof HTMLDialogElement) {
         event.stopPropagation();
         event.preventDefault();
-        this.dialogNode.close();
+        // this.dialogNode.close();
       }
     });
   };
