@@ -2,6 +2,7 @@ import { StorageService } from '../services/local-storage.service';
 import type { NodeType } from '../types/types';
 import { BaseComponent } from './base-component';
 import { Utils } from '../shared/utils/utils';
+import { Dialog } from './pages/dialog';
 
 // const database = {
 //   list: [
@@ -21,8 +22,6 @@ class Tags {
   public static readonly main = new BaseComponent('main', 'div').getNode();
 
   public static readonly h1 = new BaseComponent('heading', 'h1', 'Decision Making Tool').getNode();
-
-  public static readonly dialogNode = new BaseComponent('dialog', 'dialog').getNode();
 
   public static readonly list = (): NodeType => {
     StorageService.getData();
@@ -136,8 +135,8 @@ class Tags {
   public static readonly pasteListButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent('button', 'button', 'Paste list');
     buttonIntanceValue.getNode().addEventListener('click', () => {
-      if (this.dialogNode instanceof HTMLDialogElement) {
-        this.dialogNode.showModal();
+      if (Dialog.dialogNode instanceof HTMLDialogElement) {
+        Dialog.dialogNode.showModal();
       }
     });
     return buttonIntanceValue.getNode();

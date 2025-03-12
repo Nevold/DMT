@@ -1,5 +1,6 @@
 import './global.css';
 import Tags from './components/tags';
+import { Dialog } from './components/pages/dialog';
 
 // const app = new App();
 // app.start();
@@ -18,7 +19,7 @@ mainNode.append(
   Tags.clearListButton(),
   Tags.wrapper(),
   Tags.startButton(),
-  Tags.dialogNode
+  Dialog.dialogNode
 );
 // listNode.append(Tags.li('#1'));
 
