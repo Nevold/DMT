@@ -14,13 +14,22 @@ export class Dialog {
       });
       textareaNode.placeholder = 'Paste a list of new options in a CSV-like format';
     }
-
     return textareaNode;
+  };
+
+  public static readonly cancel = (): NodeType => {
+    const inputIntanceValue = new BaseComponent(['button', 'cancel'], 'button', 'Cancel');
+    return inputIntanceValue.getNode();
+  };
+
+  public static readonly confirm = (): NodeType => {
+    const inputIntanceValue = new BaseComponent(['button', 'confirm'], 'button', 'Confirm');
+    return inputIntanceValue.getNode();
   };
 
   public static readonly form = (): NodeType => {
     const formIntanceValue = new BaseComponent('container', 'form');
-    formIntanceValue.getNode().append(this.textarea());
+    formIntanceValue.getNode().append(this.textarea(), this.cancel(), this.confirm());
     return formIntanceValue.getNode();
   };
 

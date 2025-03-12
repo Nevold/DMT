@@ -169,3 +169,11 @@ textarea {
   color: var(--color-primary-50);
   background-color: var(--color-primary-800);
 }
+
+.cancel {
+  grid-area: cancel;
+}
+
+.confirm {
+  grid-area: confirm;
+}
