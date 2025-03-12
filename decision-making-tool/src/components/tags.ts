@@ -97,6 +97,8 @@ class Tags {
     buttonIntanceValue.setAttributes({ id: `option-${value}`, type: 'button' });
     buttonIntanceValue.getNode().addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
+        event.stopPropagation();
+        event.preventDefault();
         const id = event.target.getAttribute('id');
         if (id) {
           const idValue = id.split('option-').pop();
@@ -118,6 +120,8 @@ class Tags {
 
     buttonIntanceValue.getNode().addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
+        event.stopPropagation();
+        event.preventDefault();
         const nextIdElement = StorageService.data.lastId + 1;
         StorageService.data.list.push({ id: `#${nextIdElement}`, title: '', weight: '' });
         const storageData = {
@@ -134,8 +138,10 @@ class Tags {
 
   public static readonly pasteListButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent('button', 'button', 'Paste list');
-    buttonIntanceValue.getNode().addEventListener('click', () => {
-      if (Dialog.dialogNode instanceof HTMLDialogElement) {
+    buttonIntanceValue.getNode().addEventListener('click', event => {
+      if (event.target && Dialog.dialogNode instanceof HTMLDialogElement) {
+        event.stopPropagation();
+        event.preventDefault();
         Dialog.dialogNode.showModal();
       }
     });
