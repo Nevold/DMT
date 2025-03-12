@@ -137,3 +137,17 @@ textarea {
 .button:active {
   filter: brightness(1.05);
 }
+
+.dialog {
+  overflow: unset;
+  padding: 0;
+  border: unset;
+  background: unset;
+  filter: blur(4px);
+}
+
+.dialog::backdrop {
+  backdrop-filter: blur(0.1875rem);
+  transition-duration: var(--transition-duration);
+  transition-property: backdrop-filter;
+}

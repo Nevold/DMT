@@ -1,7 +1,5 @@
 import './global.css';
 import Tags from './components/tags';
-import { StorageService } from './services/local-storage.service';
-import { Database } from './types/types';
 
 // const app = new App();
 // app.start();
@@ -19,7 +17,8 @@ mainNode.append(
   Tags.pasteListButton(),
   Tags.clearListButton(),
   Tags.wrapper(),
-  Tags.startButton()
+  Tags.startButton(),
+  Tags.dialogNode
 );
 // listNode.append(Tags.li('#1'));
 

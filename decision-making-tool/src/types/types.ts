@@ -1,4 +1,4 @@
-export type NodeType = HTMLElement | HTMLLabelElement | HTMLButtonElement | HTMLInputElement;
+export type NodeType = HTMLElement | HTMLLabelElement | HTMLButtonElement | HTMLInputElement | HTMLDialogElement;
 
 export interface Options {
   [key: string]: string;
