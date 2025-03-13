@@ -4,16 +4,6 @@ import { BaseComponent } from './base-component';
 import { Utils } from '../shared/utils/utils';
 import { Dialog } from './pages/dialog';
 
-// const database = {
-//   list: [
-//     { id: '#1', title: '1', weight: '1' },
-//     { id: '#3', title: '3sdad', weight: '10' },
-//     { id: '#4', title: 'aasd3', weight: '10' },
-//     { id: '#5', title: 'aaa3', weight: '10' }
-//   ],
-//   lastId: 3
-// };
-
 class Tags {
   public static childrenList: NodeType[] = [];
 
@@ -150,6 +140,21 @@ class Tags {
 
   public static readonly clearListButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent('button', 'button', 'Clear list');
+    buttonIntanceValue.getNode().addEventListener('click', event => {
+      if (event.target && event.target instanceof HTMLButtonElement) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const storageData = {
+          list: [],
+          lastId: 0
+        };
+        StorageService.data = storageData;
+        StorageService.saveData(storageData);
+        this.listNode.replaceChildren();
+      }
+    });
+
     return buttonIntanceValue.getNode();
   };
 
