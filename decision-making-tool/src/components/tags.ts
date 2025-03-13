@@ -160,6 +160,29 @@ class Tags {
 
   public static readonly saveListButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent(['button', 'wrapper-button'], 'button', 'Save list to file');
+    buttonIntanceValue.getNode().addEventListener('click', event => {
+      if (event.target && event.target instanceof HTMLButtonElement) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        StorageService.getData();
+        const jsonString = JSON.stringify(StorageService.data, undefined, 2);
+
+        const blob = new Blob([jsonString], { type: 'application/json' });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'option-list';
+
+        document.body.append(link);
+        link.click();
+
+        link.remove();
+        URL.revokeObjectURL(url);
+      }
+    });
+
     return buttonIntanceValue.getNode();
   };
 
