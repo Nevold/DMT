@@ -2,11 +2,10 @@ import { StorageService } from '../../services/local-storage.service';
 import { Utils } from '../../shared/utils/utils';
 import type { NodeType } from '../../types/types';
 import { BaseComponent } from '../base-component';
-// import Tags from '../tags';
+import { Nodes } from '../nodes';
+import { Options } from './options';
 
-export class Dialog {
-  public static readonly dialogNode = new BaseComponent('dialog', 'dialog').getNode();
-
+export class Modal {
   public static readonly textareaNode = new BaseComponent('textarea', 'textarea').getNode();
 
   public static readonly formNode = new BaseComponent('container', 'form').getNode();
@@ -66,10 +65,7 @@ export class Dialog {
           StorageService.data = Utils.sortById(storageData);
           StorageService.saveData(Utils.sortById(storageData));
 
-          Utils.replaceChildren();
-          // Tags.listNode.replaceChildren();
-          // Tags.childrenList = StorageService.data.list.map(node => Tags.li(node.id, node.title, node.weight));
-          // Tags.listNode.append(...Tags.childrenList);
+          Options.replaceChildren();
 
           this.formNode.elements[0].value = '';
         }
@@ -86,21 +82,21 @@ export class Dialog {
   };
 
   public static readonly dialog = (): NodeType => {
-    this.dialogNode.append(this.form());
-    this.dialogNode.addEventListener('click', event => {
-      if (event.target === this.dialogNode && this.dialogNode instanceof HTMLDialogElement) {
-        this.dialogNode.close();
+    Nodes.dialogNode.append(this.form());
+    Nodes.dialogNode.addEventListener('click', event => {
+      if (event.target === Nodes.dialogNode && Nodes.dialogNode instanceof HTMLDialogElement) {
+        Nodes.dialogNode.close();
       }
     });
-    return this.dialogNode;
+    return Nodes.dialogNode;
   };
 
   private static readonly closeDialog = (buttonIntanceValue: BaseComponent): void => {
     buttonIntanceValue.getNode().addEventListener('click', event => {
-      if (event.target && event.target instanceof HTMLButtonElement && this.dialogNode instanceof HTMLDialogElement) {
+      if (event.target && event.target instanceof HTMLButtonElement && Nodes.dialogNode instanceof HTMLDialogElement) {
         event.stopPropagation();
         event.preventDefault();
-        this.dialogNode.close();
+        Nodes.dialogNode.close();
       }
     });
   };
