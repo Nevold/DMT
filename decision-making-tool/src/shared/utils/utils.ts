@@ -1,3 +1,5 @@
+import Tags from '../../components/tags';
+import { StorageService } from '../../services/local-storage.service';
 import type { Database } from '../../types/types';
 
 export class Utils {
@@ -9,4 +11,10 @@ export class Utils {
     });
     return data;
   }
+
+  public static readonly replaceChildren = (): void => {
+    Tags.listNode.replaceChildren();
+    Tags.childrenList = StorageService.data.list.map(node => Tags.li(node.id, node.title, node.weight));
+    Tags.listNode.append(...Tags.childrenList);
+  };
 }

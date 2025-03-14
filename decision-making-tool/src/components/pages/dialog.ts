@@ -2,7 +2,7 @@ import { StorageService } from '../../services/local-storage.service';
 import { Utils } from '../../shared/utils/utils';
 import type { NodeType } from '../../types/types';
 import { BaseComponent } from '../base-component';
-import Tags from '../tags';
+// import Tags from '../tags';
 
 export class Dialog {
   public static readonly dialogNode = new BaseComponent('dialog', 'dialog').getNode();
@@ -66,9 +66,10 @@ export class Dialog {
           StorageService.data = Utils.sortById(storageData);
           StorageService.saveData(Utils.sortById(storageData));
 
-          Tags.listNode.replaceChildren();
-          Tags.childrenList = StorageService.data.list.map(node => Tags.li(node.id, node.title, node.weight));
-          Tags.listNode.append(...Tags.childrenList);
+          Utils.replaceChildren();
+          // Tags.listNode.replaceChildren();
+          // Tags.childrenList = StorageService.data.list.map(node => Tags.li(node.id, node.title, node.weight));
+          // Tags.listNode.append(...Tags.childrenList);
 
           this.formNode.elements[0].value = '';
         }

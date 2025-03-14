@@ -231,9 +231,7 @@ class Tags {
               StorageService.data = Utils.sortById(result);
               StorageService.saveData(Utils.sortById(result));
 
-              Tags.listNode.replaceChildren();
-              Tags.childrenList = StorageService.data.list.map(node => Tags.li(node.id, node.title, node.weight));
-              Tags.listNode.append(...Tags.childrenList);
+              Utils.replaceChildren();
             }
           } catch (error) {
             if (typeof error === 'string') {
