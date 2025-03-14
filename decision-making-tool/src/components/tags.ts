@@ -1,5 +1,5 @@
 import { StorageService } from '../services/local-storage.service';
-import type { Database, NodeType } from '../types/types';
+import type { NodeType } from '../types/types';
 import { BaseComponent } from './base-component';
 import { Utils } from '../shared/utils/utils';
 import { Dialog } from './pages/dialog';
@@ -203,7 +203,6 @@ class Tags {
   };
 
   public static readonly loadInput = (): NodeType => {
-    // inputIntanceValue.setAttributes({ type: 'file', accept: '.json' });
     this.loadInputNode.hidden = true;
     this.loadInputNode.setAttribute('type', 'file');
     this.loadInputNode.setAttribute('accept', '.json');
@@ -219,8 +218,6 @@ class Tags {
         const file = input.files[0];
         const reader = new FileReader();
 
-        let jsonData: Database = { list: [], lastId: 0 };
-
         reader.addEventListener('load', eventLoad => {
           try {
             let result: string = '';
@@ -231,12 +228,13 @@ class Tags {
             }
 
             if (StorageService.isDatabase(result)) {
-              jsonData = result;
+              StorageService.data = Utils.sortById(result);
+              StorageService.saveData(Utils.sortById(result));
+
+              Tags.listNode.replaceChildren();
+              Tags.childrenList = StorageService.data.list.map(node => Tags.li(node.id, node.title, node.weight));
+              Tags.listNode.append(...Tags.childrenList);
             }
-
-            console.log(jsonData);
-
-            // resolve(jsonData);
           } catch (error) {
             if (typeof error === 'string') {
               throw new TypeError(error.toUpperCase());

@@ -65,13 +65,13 @@ export class Dialog {
         if (StorageService.isDatabase(storageData)) {
           StorageService.data = Utils.sortById(storageData);
           StorageService.saveData(Utils.sortById(storageData));
+
+          Tags.listNode.replaceChildren();
+          Tags.childrenList = StorageService.data.list.map(node => Tags.li(node.id, node.title, node.weight));
+          Tags.listNode.append(...Tags.childrenList);
+
+          this.formNode.elements[0].value = '';
         }
-
-        Tags.listNode.replaceChildren();
-        Tags.childrenList = StorageService.data.list.map(node => Tags.li(node.id, node.title, node.weight));
-        Tags.listNode.append(...Tags.childrenList);
-
-        this.formNode.elements[0].value = '';
       }
     });
 
