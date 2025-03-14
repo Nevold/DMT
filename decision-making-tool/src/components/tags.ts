@@ -1,5 +1,5 @@
 import { StorageService } from '../services/local-storage.service';
-import type { NodeType } from '../types/types';
+import type { Database, NodeType } from '../types/types';
 import { BaseComponent } from './base-component';
 import { Utils } from '../shared/utils/utils';
 import { Dialog } from './pages/dialog';
@@ -194,8 +194,8 @@ class Tags {
     buttonIntanceValue.getNode().addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.stopPropagation();
-        // event.preventDefault();
-        console.log('object');
+        event.preventDefault();
+        this.loadInputNode.click();
       }
     });
 
@@ -207,11 +207,46 @@ class Tags {
     this.loadInputNode.hidden = true;
     this.loadInputNode.setAttribute('type', 'file');
     this.loadInputNode.setAttribute('accept', '.json');
-    this.loadInputNode.addEventListener('click', event => {
+    this.loadInputNode.addEventListener('change', event => {
       if (event.target && event.target instanceof HTMLInputElement) {
         event.stopPropagation();
 
-        // event.preventDefault();
+        const input = event.target;
+
+        if (!input.files || input.files.length === 0) {
+          throw new Error('File not selected');
+        }
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        let jsonData: Database = { list: [], lastId: 0 };
+
+        reader.addEventListener('load', eventLoad => {
+          try {
+            let result: string = '';
+            if (typeof result !== 'string') {
+              throw new TypeError('Unsupported file format');
+            } else if (eventLoad.target && typeof eventLoad.target.result === 'string') {
+              result = JSON.parse(eventLoad.target.result);
+            }
+
+            if (StorageService.isDatabase(result)) {
+              jsonData = result;
+            }
+
+            console.log(jsonData);
+
+            // resolve(jsonData);
+          } catch (error) {
+            if (typeof error === 'string') {
+              throw new TypeError(error.toUpperCase());
+            } else if (error instanceof Error) {
+              throw new TypeError(error.message);
+            }
+          }
+        });
+
+        reader.readAsText(file, 'ascii');
       }
     });
 
