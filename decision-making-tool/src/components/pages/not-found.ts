@@ -10,7 +10,7 @@ export class NotFound {
     Nodes.backButtonNode.addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
-        HashRouter.navigateTo('#/');
+        HashRouter.navigateTo('/');
       }
     });
 

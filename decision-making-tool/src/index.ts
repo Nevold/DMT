@@ -6,28 +6,30 @@ import './global.css';
 import { HashRouter } from './services/router.service';
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.addEventListener('load', () => {
-    if (!globalThis.location.hash) {
-      globalThis.location.hash = '#/';
-    }
+  // globalThis.addEventListener('load', () => {
+  console.log(globalThis.location.hash);
 
-    document.body.append(Nodes.main);
+  if (!globalThis.location.hash) {
+    globalThis.location.hash = '#/';
+  }
 
-    HashRouter.start();
+  document.body.append(Nodes.main);
 
-    HashRouter.addRoute('/', () => {
-      Nodes.main.replaceChildren();
-      ListOfOptions.start();
-    });
+  HashRouter.start();
 
-    HashRouter.addRoute('/decision-picker', () => {
-      Nodes.main.replaceChildren();
-      DecisionPicker.start();
-    });
-
-    HashRouter.setNotFound(() => {
-      Nodes.main.replaceChildren();
-      NotFound.start();
-    });
+  HashRouter.addRoute('/', () => {
+    Nodes.main.replaceChildren();
+    ListOfOptions.start();
   });
+
+  HashRouter.addRoute('/decision-picker', () => {
+    Nodes.main.replaceChildren();
+    DecisionPicker.start();
+  });
+
+  HashRouter.setNotFound(() => {
+    Nodes.main.replaceChildren();
+    NotFound.start();
+  });
+  // });
 });

@@ -5,7 +5,12 @@ export class HashRouter {
 
   public static isRedirecting = false;
 
+  public static count: number = 0;
+
   public static readonly handleHashChange = (): void => {
+    this.count += 1;
+    // if (this.count === 1) {
+    console.log('object');
     if (this.isRedirecting) return;
 
     const rawHash = globalThis.location.hash.slice(1);
@@ -29,6 +34,7 @@ export class HashRouter {
     } else {
       throw new Error('No route and no 404 handler found');
     }
+    // }
   };
 
   public static readonly setNotFound = (handler: RouteHandler): void => {
