@@ -13,7 +13,9 @@ const devServer = isDev =>
           open: true,
           hot: true,
           port: 8080,
-          historyApiFallback: true,
+          historyApiFallback: {
+            rewrites: [{ from: /^\/$/, to: '/index.html#/' }]
+          },
           compress: true
         }
       };
@@ -29,7 +31,8 @@ module.exports = ({ development }) => ({
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/[hash][ext]'
+    assetModuleFilename: 'assets/[hash][ext]',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -63,13 +66,13 @@ module.exports = ({ development }) => ({
   plugins: [
     ...esLintPlugin(development),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
-    // new HtmlWebpackPlugin({
-    //   template: './src/index.html'
-    // }),
     new HtmlWebpackPlugin({
-      title: 'Decision Making Tool',
-      favicon: './public/favicon.png'
+      template: './src/index.html'
     }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Decision Making Tool',
+    //   favicon: './public/favicon.png'
+    // }),
     new CopyPlugin({
       patterns: [{ from: 'public' }]
     }),
