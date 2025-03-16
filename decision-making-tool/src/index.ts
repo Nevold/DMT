@@ -1,3 +1,4 @@
+import { Options } from './components/controls/options';
 import { Nodes } from './components/nodes';
 import { DecisionPicker } from './components/pages/decision-picker';
 import { ListOfOptions } from './components/pages/list-of-options';
@@ -7,7 +8,6 @@ import { HashRouter } from './services/router.service';
 
 document.addEventListener('DOMContentLoaded', () => {
   // globalThis.addEventListener('load', () => {
-  console.log(globalThis.location.hash);
 
   if (!globalThis.location.hash) {
     globalThis.location.hash = '#/';
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   HashRouter.addRoute('/', () => {
     Nodes.main.replaceChildren();
+    Options.list().replaceChildren();
     ListOfOptions.start();
   });
 
