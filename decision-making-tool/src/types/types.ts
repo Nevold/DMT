@@ -1,3 +1,5 @@
+import type { ListOfOptions } from '../components/pages/list-of-options';
+
 export type NodeType =
   | HTMLElement
   | HTMLLabelElement
@@ -18,3 +20,14 @@ export interface Database {
   }[];
   lastId: number;
 }
+
+export interface Route {
+  path: string;
+  title: string;
+  template: ListOfOptions;
+}
+
+export type AppState = {
+  currentPath: string;
+  previousPath?: string;
+};

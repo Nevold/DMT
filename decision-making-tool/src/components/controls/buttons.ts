@@ -1,13 +1,9 @@
-import { StorageService } from '../services/local-storage.service';
-import type { NodeType } from '../types/types';
-import { BaseComponent } from './base-component';
-import { Nodes } from './nodes';
+import { StorageService } from '../../services/local-storage.service';
+import type { NodeType } from '../../types/types';
+import { BaseComponent } from '../base-component';
+import { Nodes } from '../nodes';
 
-class Tags {
-  public static readonly main = new BaseComponent('main', 'div').getNode();
-
-  public static readonly h1 = new BaseComponent('heading', 'h1', 'Decision Making Tool').getNode();
-
+export class Buttons {
   public static readonly pasteListButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent('button', 'button', 'Paste list');
     buttonIntanceValue.getNode().addEventListener('click', event => {
@@ -40,10 +36,8 @@ class Tags {
     return buttonIntanceValue.getNode();
   };
 
-  public static readonly startButton = (): NodeType => {
-    const buttonIntanceValue = new BaseComponent('button', 'button', 'Start');
-    return buttonIntanceValue.getNode();
-  };
+  // public static readonly startButton = (): NodeType => {
+  //   const buttonIntanceValue = new BaseComponent('button', 'button', 'Start');
+  //   return buttonIntanceValue.getNode();
+  // };
 }
-
-export default Tags;

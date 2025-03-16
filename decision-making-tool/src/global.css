@@ -1,7 +1,7 @@
 :root {
   --transition-duration: 0.25s;
-  --color-lime: #414242;
-  --color-primary-50: #d0d5d5;
+  --color-grey: #414242;
+  --color-primary-50: #f8f8f8;
   --color-primary-100: #daebeb;
   --color-primary-200: #a7b4b4;
   --color-primary-300: #afafaf;

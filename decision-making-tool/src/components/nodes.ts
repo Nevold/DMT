@@ -9,4 +9,10 @@ export class Nodes {
   public static listNode = new BaseComponent('list', 'ul').getNode();
 
   public static readonly loadInputNode = new BaseComponent('input', 'input').getNode();
+
+  public static readonly main = new BaseComponent('main', 'div').getNode();
+
+  public static readonly h1 = new BaseComponent('heading', 'h1', 'Decision Making Tool').getNode();
+
+  public static readonly startButtonNode = new BaseComponent('button', 'button', 'Start').getNode();
 }
