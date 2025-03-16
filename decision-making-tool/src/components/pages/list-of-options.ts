@@ -1,5 +1,4 @@
 import { Buttons } from '../controls/buttons';
-import { Modal } from '../controls/list-modal';
 import { Options } from '../controls/options';
 import { Nodes } from '../nodes';
 
@@ -12,8 +11,7 @@ export class ListOfOptions {
       Buttons.pasteListButton(),
       Buttons.clearListButton(),
       Options.wrapper(),
-      Nodes.startButtonNode,
-      Modal.dialog()
+      Nodes.startButtonNode
     );
   };
 }

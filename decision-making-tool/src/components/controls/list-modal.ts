@@ -87,9 +87,23 @@ export class Modal {
     Nodes.dialogListNode.addEventListener('click', event => {
       if (event.target === Nodes.dialogListNode && Nodes.dialogListNode instanceof HTMLDialogElement) {
         Nodes.dialogListNode.close();
+        this.clearDialog();
       }
     });
     return Nodes.dialogListNode;
+  };
+
+  public static readonly clearDialog = (): void => {
+    if (
+      Nodes.dialogListNode instanceof HTMLDialogElement &&
+      this.formNode instanceof HTMLFormElement &&
+      this.formNode.elements[0] instanceof HTMLTextAreaElement
+    ) {
+      this.formNode.elements[0].value = '';
+      this.formNode.replaceChildren();
+      Nodes.dialogListNode.replaceChildren();
+      Nodes.dialogListNode.remove();
+    }
   };
 
   private static readonly closeDialog = (buttonIntanceValue: BaseComponent): void => {
@@ -102,6 +116,7 @@ export class Modal {
         event.stopPropagation();
         event.preventDefault();
         Nodes.dialogListNode.close();
+        this.clearDialog();
       }
     });
   };

@@ -2,6 +2,7 @@ import { StorageService } from '../../services/local-storage.service';
 import type { NodeType } from '../../types/types';
 import { BaseComponent } from '../base-component';
 import { Nodes } from '../nodes';
+import { Modal } from './list-modal';
 
 export class Buttons {
   public static readonly pasteListButton = (): NodeType => {
@@ -10,6 +11,7 @@ export class Buttons {
       if (event.target && Nodes.dialogListNode instanceof HTMLDialogElement) {
         event.stopPropagation();
         event.preventDefault();
+        Nodes.main.append(Modal.dialog());
         Nodes.dialogListNode.showModal();
       }
     });
