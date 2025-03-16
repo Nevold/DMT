@@ -1,4 +1,5 @@
 import { StorageService } from '../../services/local-storage.service';
+import { Constants } from '../../shared/constants';
 import { Utils } from '../../shared/utils/utils';
 import type { NodeType } from '../../types/types';
 import { BaseComponent } from '../base-component';
@@ -12,8 +13,8 @@ export class Modal {
 
   public static readonly textarea = (): NodeType => {
     if (this.textareaNode instanceof HTMLTextAreaElement) {
-      this.textareaNode.rows = 12;
-      this.textareaNode.cols = 64;
+      this.textareaNode.rows = Constants.ROWS;
+      this.textareaNode.cols = Constants.COLS;
       this.textareaNode.placeholder = 'Paste a list of new options in a CSV-like format';
     }
     return this.textareaNode;

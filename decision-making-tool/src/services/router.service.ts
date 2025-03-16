@@ -3,6 +3,7 @@ import { ListOfOptions } from '../components/pages/list-of-options';
 import { Nodes } from '../components/nodes';
 import { DecisionPicker } from '../components/pages/decision-picker';
 import { NotFound } from '../components/pages/not-found';
+import { OptionsModal } from '../components/controls/options-modal';
 
 export class Router {
   public static readonly routes = [
@@ -37,7 +38,11 @@ export class Router {
     Nodes.startButtonNode.addEventListener('click', event => {
       if (event.target instanceof HTMLButtonElement) {
         event.preventDefault();
-        this.navigateTo('/decision-picker');
+        // this.navigateTo('/decision-picker');
+        Nodes.main.append(OptionsModal.dialog());
+        if (Nodes.dialogOptionsNode instanceof HTMLDialogElement) {
+          Nodes.dialogOptionsNode.showModal();
+        }
       }
     });
 
