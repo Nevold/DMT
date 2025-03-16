@@ -8,14 +8,8 @@ export class OptionsModal {
   public static readonly textFirst = new BaseComponent(
     'warning',
     'p',
-    'Enter valid options:  title is not empty and its weight is greater than 0'
+    'Please enter two valid options where the title is not empty and its weight is greater than 0'
   ).getNode();
-
-  // public static readonly textSecond = new BaseComponent(
-  //   'warning',
-  //   'p',
-  //   'An option is considered valid if its title is not empty and its weight is greater than 0'
-  // ).getNode();
 
   public static readonly closeOptionsButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent(['button', 'close-button'], 'button', 'close');
