@@ -7,10 +7,10 @@ export class Buttons {
   public static readonly pasteListButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent('button', 'button', 'Paste list');
     buttonIntanceValue.getNode().addEventListener('click', event => {
-      if (event.target && Nodes.dialogNode instanceof HTMLDialogElement) {
+      if (event.target && Nodes.dialogListNode instanceof HTMLDialogElement) {
         event.stopPropagation();
         event.preventDefault();
-        Nodes.dialogNode.showModal();
+        Nodes.dialogListNode.showModal();
       }
     });
     return buttonIntanceValue.getNode();

@@ -1,5 +1,5 @@
 import { Buttons } from '../controls/buttons';
-import { Modal } from '../controls/modal';
+import { Modal } from '../controls/list-modal';
 import { Options } from '../controls/options';
 import { Nodes } from '../nodes';
 

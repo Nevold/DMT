@@ -82,21 +82,25 @@ export class Modal {
   };
 
   public static readonly dialog = (): NodeType => {
-    Nodes.dialogNode.append(this.form());
-    Nodes.dialogNode.addEventListener('click', event => {
-      if (event.target === Nodes.dialogNode && Nodes.dialogNode instanceof HTMLDialogElement) {
-        Nodes.dialogNode.close();
+    Nodes.dialogListNode.append(this.form());
+    Nodes.dialogListNode.addEventListener('click', event => {
+      if (event.target === Nodes.dialogListNode && Nodes.dialogListNode instanceof HTMLDialogElement) {
+        Nodes.dialogListNode.close();
       }
     });
-    return Nodes.dialogNode;
+    return Nodes.dialogListNode;
   };
 
   private static readonly closeDialog = (buttonIntanceValue: BaseComponent): void => {
     buttonIntanceValue.getNode().addEventListener('click', event => {
-      if (event.target && event.target instanceof HTMLButtonElement && Nodes.dialogNode instanceof HTMLDialogElement) {
+      if (
+        event.target &&
+        event.target instanceof HTMLButtonElement &&
+        Nodes.dialogListNode instanceof HTMLDialogElement
+      ) {
         event.stopPropagation();
         event.preventDefault();
-        Nodes.dialogNode.close();
+        Nodes.dialogListNode.close();
       }
     });
   };
