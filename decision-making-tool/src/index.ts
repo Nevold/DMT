@@ -1,3 +1,4 @@
+import { Nodes } from './components/nodes';
 import { ListOfOptions } from './components/pages/list-of-options';
 import './global.css';
 import { Router } from './services/router.service';
@@ -12,18 +13,14 @@ const routes: Route[] = [
     template: ListOfOptions
   },
   {
-    path: '/about',
+    path: '/decision-picker',
     title: 'About Us',
     template: '<h1>About Page</h1><p>Learn more about our company.</p>'
-  },
-  {
-    path: '/contact',
-    title: 'Contact',
-    template: '<h1>Contact Page</h1><p>Get in touch with us.</p>'
   }
 ];
 
 // Initialize router when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+  document.body.append(Nodes.main);
   new Router(routes, 'app');
 });

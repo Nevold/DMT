@@ -1,6 +1,7 @@
 import type { AppState, Route } from '../types/types';
 import { ListOfOptions } from '../components/pages/list-of-options';
 import { Nodes } from '../components/nodes';
+import { DecisionPicker } from '../components/pages/decision-picker';
 
 export class Router {
   public routes: Route[];
@@ -33,7 +34,7 @@ export class Router {
     Nodes.startButtonNode.addEventListener('click', event => {
       if (event.target instanceof HTMLButtonElement) {
         event.preventDefault();
-        this.navigateTo('/');
+        this.navigateTo('/decision-picker');
       }
 
       // const target = event.target as HTMLElement;
@@ -65,10 +66,15 @@ export class Router {
   private renderRoute(path: string): void {
     const route = this.findRoute(path);
 
-    if (route) {
+    if (route?.path === '/') {
+      Nodes.main.replaceChildren();
       ListOfOptions.start();
+    } else if (route?.path === '/decision-picker') {
+      Nodes.main.replaceChildren();
+      DecisionPicker.start();
     } else {
-      document.body.append(Nodes.main);
+      Nodes.main.replaceChildren();
+      Nodes.main.append(Nodes.h1);
       Nodes.main.append(Nodes.h1);
     }
   }
