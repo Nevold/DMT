@@ -6,23 +6,29 @@ import './global.css';
 import { HashRouter } from './services/router.service';
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.append(Nodes.main);
-  // Router.start();
+  window.addEventListener('load', () => {
+    if (!globalThis.location.hash) {
+      globalThis.location.hash = '#/';
+    }
 
-  const router = new HashRouter();
+    document.body.append(Nodes.main);
+    // Router.start();
 
-  router.addRoute('/', () => {
-    Nodes.main.replaceChildren();
-    ListOfOptions.start();
-  });
+    const router = new HashRouter();
 
-  router.addRoute('/about', () => {
-    Nodes.main.replaceChildren();
-    DecisionPicker.start();
-  });
+    router.addRoute('/', () => {
+      Nodes.main.replaceChildren();
+      ListOfOptions.start();
+    });
 
-  router.setNotFound(() => {
-    Nodes.main.replaceChildren();
-    NotFound.start();
+    router.addRoute('/about', () => {
+      Nodes.main.replaceChildren();
+      DecisionPicker.start();
+    });
+
+    router.setNotFound(() => {
+      Nodes.main.replaceChildren();
+      NotFound.start();
+    });
   });
 });

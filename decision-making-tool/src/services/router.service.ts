@@ -96,45 +96,106 @@
 //   };
 // }
 
+// type RouteHandler = () => void;
+
+// export class HashRouter {
+//   public routes: Record<string, RouteHandler> = {};
+
+//   constructor() {
+//     this.checkInitialRoute();
+//     globalThis.addEventListener('hashchange', this.handleHashChange);
+//     window.addEventListener('load', this.handleHashChange);
+//   }
+
+//   public checkInitialRoute(): void {
+//     const currentHash = globalThis.location.hash.slice(1);
+
+//     if (currentHash === '' || currentHash === '/') {
+//       this.navigateTo('/');
+//     }
+//   }
+
+//   public navigateTo(path: string): void {
+//     //+
+//     globalThis.location.hash = path.startsWith('/') ? path : `/${path}`;
+//   }
+
+//   public handleHashChange = (): void => {
+//     const hash = globalThis.location.hash.slice(1) || '/';
+//     const handler = this.routes[hash] || this.routes['*'];
+//     handler?.();
+//   };
+
+//   public addRoute(path: string, handler: RouteHandler): void {
+//     this.routes[path] = handler;
+//   }
+
+//   public setNotFound(handler: RouteHandler): void {
+//     this.routes['*'] = handler;
+//   }
+
+//   public navigate(path: string): void {
+//     globalThis.location.hash = path;
+//   }
+// }
+
 type RouteHandler = () => void;
 
 export class HashRouter {
   public routes: Record<string, RouteHandler> = {};
 
+  public isRedirecting = false;
+
   constructor() {
-    this.checkInitialRoute();
     globalThis.addEventListener('hashchange', this.handleHashChange);
-    window.addEventListener('load', this.handleHashChange);
-  }
-
-  public checkInitialRoute(): void {
-    const currentHash = globalThis.location.hash.slice(1);
-
-    if (currentHash === '' || currentHash === '/') {
-      this.navigateTo('/');
-    }
-  }
-
-  public navigateTo(path: string): void {
-    //+
-    globalThis.location.hash = path.startsWith('/') ? path : `/${path}`;
+    globalThis.addEventListener('load', this.handleHashChange);
   }
 
   public handleHashChange = (): void => {
-    const hash = globalThis.location.hash.slice(1) || '/';
-    const handler = this.routes[hash] || this.routes['*'];
-    handler?.();
+    if (this.isRedirecting) return;
+
+    const rawHash = globalThis.location.hash.slice(1);
+    const [path] = rawHash.split('?'); // Игнорируем query-параметры
+    const normalizedPath = path || '/';
+
+    // Перенаправление для корня
+    if (normalizedPath === '/' && !this.routes['/']) {
+      this.isRedirecting = true;
+      globalThis.location.hash = '#/';
+      this.isRedirecting = false;
+      return;
+    }
+
+    // Поиск обработчика
+    const handler = this.routes[normalizedPath] || this.routes['*'];
+
+    if (handler) {
+      handler();
+    } else if (this.routes['*']) {
+      this.routes['*'](); // Явный вызов 404
+    } else {
+      console.error('No route and no 404 handler found');
+    }
   };
 
-  public addRoute(path: string, handler: RouteHandler): void {
-    this.routes[path] = handler;
-  }
-
   public setNotFound(handler: RouteHandler): void {
-    this.routes['*'] = handler;
+    // Добавляем проверку на существование корневого маршрута
+    if (!this.routes['/']) {
+      this.addRoute('/', () => {
+        this.isRedirecting = true;
+        globalThis.location.hash = '#/';
+        this.isRedirecting = false;
+      });
+    }
+
+    this.routes['*'] = (): void => {
+      if (globalThis.location.hash !== '#/') {
+        handler();
+      }
+    };
   }
 
-  public navigate(path: string): void {
-    globalThis.location.hash = path;
+  public addRoute(path: string, handler: RouteHandler): void {
+    this.routes[path.startsWith('/') ? path : `/${path}`] = handler;
   }
 }
