@@ -1,4 +1,5 @@
 import { StorageService } from '../../services/local-storage.service';
+import { HashRouter } from '../../services/router.service';
 import type { NodeType } from '../../types/types';
 import { BaseComponent } from '../base-component';
 import { Nodes } from '../nodes';
@@ -38,8 +39,14 @@ export class Buttons {
     return buttonIntanceValue.getNode();
   };
 
-  // public static readonly startButton = (): NodeType => {
-  //   const buttonIntanceValue = new BaseComponent('button', 'button', 'Start');
-  //   return buttonIntanceValue.getNode();
-  // };
+  public static readonly startButton = (): NodeType => {
+    Nodes.startButtonNode.addEventListener('click', event => {
+      if (event.target && event.target instanceof HTMLButtonElement) {
+        event.preventDefault();
+        HashRouter.navigateTo('/decision-picker');
+      }
+    });
+
+    return Nodes.startButtonNode;
+  };
 }

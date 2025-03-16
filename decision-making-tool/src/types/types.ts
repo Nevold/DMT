@@ -19,11 +19,4 @@ export interface Database {
   lastId: number;
 }
 
-export interface Route {
-  path: string;
-}
-
-export type AppState = {
-  currentPath: string;
-  previousPath?: string;
-};
+export type RouteHandler = () => void;
