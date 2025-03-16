@@ -11,7 +11,7 @@ export class ListOfOptions {
       Buttons.pasteListButton(),
       Buttons.clearListButton(),
       Options.wrapper(),
-      Buttons.startButton()
+      Nodes.startButtonNode
     );
   };
 }
