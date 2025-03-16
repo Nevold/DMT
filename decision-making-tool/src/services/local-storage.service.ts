@@ -12,21 +12,6 @@ export class StorageService {
 
     if (!Array.isArray(list) || typeof lastId !== 'number') return false;
 
-    // Validate each item in the 'list' array
-    // for (const item of list) {
-    //   if (
-    //     typeof item !== 'object' ||
-    //     !('id' in item) ||
-    //     !('title' in item) ||
-    //     !('weight' in item) ||
-    //     typeof item.id !== 'string' ||
-    //     typeof item.title !== 'string' ||
-    //     typeof item.weight !== 'string'
-    //   ) {
-    //     return false;
-    //   }
-    // }
-
     return true;
   }
 

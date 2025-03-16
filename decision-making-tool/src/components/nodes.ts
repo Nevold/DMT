@@ -15,4 +15,6 @@ export class Nodes {
   public static readonly h1 = new BaseComponent('heading', 'h1', 'Decision Making Tool').getNode();
 
   public static readonly startButtonNode = new BaseComponent('button', 'button', 'Start').getNode();
+
+  public static readonly backButtonNode = new BaseComponent('button', 'button', 'Back to main').getNode();
 }

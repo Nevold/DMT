@@ -1,5 +1,3 @@
-import type { ListOfOptions } from '../components/pages/list-of-options';
-
 export type NodeType =
   | HTMLElement
   | HTMLLabelElement
@@ -23,8 +21,6 @@ export interface Database {
 
 export interface Route {
   path: string;
-  title: string;
-  template: ListOfOptions;
 }
 
 export type AppState = {
