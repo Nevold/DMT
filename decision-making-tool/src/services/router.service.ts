@@ -9,15 +9,12 @@ export class HashRouter {
 
   public static readonly handleHashChange = (): void => {
     this.count += 1;
-    // if (this.count === 1) {
-    console.log('object');
     if (this.isRedirecting) return;
 
     const rawHash = globalThis.location.hash.slice(1);
-    const [path] = rawHash.split('?'); // Игнорируем query-параметры
+    const [path] = rawHash.split('?');
     const normalizedPath = path || '/';
 
-    // Перенаправление для корня
     if (normalizedPath === '/' && !this.routes['/']) {
       // this.isRedirecting = true;
       globalThis.location.hash = '#/';
@@ -25,7 +22,6 @@ export class HashRouter {
       return;
     }
 
-    // Поиск обработчика
     const handler = this.routes[normalizedPath] || this.routes['*'];
     if (handler) {
       handler();
@@ -34,14 +30,11 @@ export class HashRouter {
     } else {
       throw new Error('No route and no 404 handler found');
     }
-    // }
   };
 
   public static readonly setNotFound = (handler: RouteHandler): void => {
-    // Добавляем проверку на существование корневого маршрута
     if (!this.routes['/']) {
       this.addRoute('/', () => {
-        // this.isRedirecting = true;
         globalThis.location.hash = '#/';
         this.isRedirecting = false;
       });
