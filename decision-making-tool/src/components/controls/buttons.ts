@@ -4,6 +4,7 @@ import type { NodeType } from '../../types/types';
 import { BaseComponent } from '../base-component';
 import { Nodes } from '../nodes';
 import { Modal } from './list-modal';
+import { OptionsModal } from './options-modal';
 
 export class Buttons {
   public static readonly pasteListButton = (): NodeType => {
@@ -44,6 +45,14 @@ export class Buttons {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
         // HashRouter.navigateTo('/decision-picker');
+        // if()
+
+        StorageService.getData();
+        console.log(StorageService.data.list);
+        // Nodes.main.append(OptionsModal.dialog());
+        // if (Nodes.dialogOptionsNode instanceof HTMLDialogElement) {
+        //   Nodes.dialogOptionsNode.showModal();
+        // }
       }
     });
 
