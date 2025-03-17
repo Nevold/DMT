@@ -16,7 +16,6 @@ export class HashRouter {
     const normalizedPath = path || '/';
 
     if (normalizedPath === '/' && !this.routes['/']) {
-      // this.isRedirecting = true;
       globalThis.location.hash = '#/';
       this.isRedirecting = false;
       return;
@@ -58,7 +57,6 @@ export class HashRouter {
 
   public static readonly navigateTo = (path: string): void => {
     globalThis.location.hash = path.startsWith('/') ? path : `/${path}`;
-    // globalThis.history.pushState({}, '', `#${path}`);
     this.handleHashChange();
   };
 }
