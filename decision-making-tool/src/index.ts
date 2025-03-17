@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   HashRouter.addRoute('/decision-picker', () => {
+    Nodes.formPickNode.replaceChildren();
     Nodes.main.replaceChildren();
     DecisionPicker.start();
   });

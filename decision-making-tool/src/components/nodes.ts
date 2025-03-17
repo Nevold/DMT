@@ -19,4 +19,6 @@ export class Nodes {
   public static readonly startButtonNode = new BaseComponent('button', 'button', 'Start').getNode();
 
   public static readonly backButtonNode = new BaseComponent('button', 'button', 'Back to main').getNode();
+
+  public static readonly formPickNode = new BaseComponent('container-pick', 'form').getNode();
 }

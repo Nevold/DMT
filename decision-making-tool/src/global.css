@@ -199,3 +199,23 @@ textarea {
 .close-button {
   margin-left: auto;
 }
+
+.container-pick {
+  display: grid;
+  grid-template: 'back-button sound duration-label' 1fr 'pick-button pick-button pick-button' 1fr / 1fr 1fr;
+  gap: 0.5rem;
+  margin-inline: auto;
+  transition-duration: var(--transition-duration);
+}
+
+.back-button {
+  grid-area: back-button;
+}
+
+.sound {
+  grid-area: sound;
+}
+
+.sound-input {
+  color: var(--color-primary-900);
+}
