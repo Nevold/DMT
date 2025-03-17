@@ -43,7 +43,7 @@ export class Buttons {
     Nodes.startButtonNode.addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
-        HashRouter.navigateTo('/decision-picker');
+        // HashRouter.navigateTo('/decision-picker');
       }
     });
 
