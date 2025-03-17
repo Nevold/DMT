@@ -44,15 +44,17 @@ export class Buttons {
     Nodes.startButtonNode.addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
-        // HashRouter.navigateTo('/decision-picker');
-        // if()
-
         StorageService.getData();
-        console.log(StorageService.data.list);
-        // Nodes.main.append(OptionsModal.dialog());
-        // if (Nodes.dialogOptionsNode instanceof HTMLDialogElement) {
-        //   Nodes.dialogOptionsNode.showModal();
-        // }
+        const isRule =
+          StorageService.data.list.filter(element => element.title !== '' && +element.weight > 0).length >= 2;
+        if (isRule) {
+          HashRouter.navigateTo('/decision-picker');
+        } else {
+          Nodes.main.append(OptionsModal.dialog());
+          if (Nodes.dialogOptionsNode instanceof HTMLDialogElement) {
+            Nodes.dialogOptionsNode.showModal();
+          }
+        }
       }
     });
 
