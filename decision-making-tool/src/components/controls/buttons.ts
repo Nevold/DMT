@@ -47,6 +47,7 @@ export class Buttons {
         StorageService.getData();
         const isRule =
           StorageService.data.list.filter(element => element.title !== '' && +element.weight > 0).length >= 2;
+        OptionsModal.closeDialog();
         if (isRule) {
           HashRouter.navigateTo('/decision-picker');
         } else {
