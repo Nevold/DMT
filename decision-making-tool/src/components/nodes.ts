@@ -21,4 +21,6 @@ export class Nodes {
   public static readonly backButtonNode = new BaseComponent('button', 'button', 'Back to main').getNode();
 
   public static readonly formPickNode = new BaseComponent('container-pick', 'form').getNode();
+
+  public static readonly labelDurationNode = new BaseComponent('duration-label', 'label', 'Time').getNode();
 }

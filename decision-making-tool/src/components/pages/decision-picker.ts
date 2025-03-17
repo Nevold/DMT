@@ -28,8 +28,20 @@ export class DecisionPicker {
     return buttonIntanceValue.getNode();
   };
 
+  public static readonly inputDuration = (): NodeType => {
+    const inputIntanceValue = new BaseComponent('duration-input', 'input');
+    inputIntanceValue.setAttributes({ min: '5', placeholder: 'sec', type: 'number', value: '6' });
+    return inputIntanceValue.getNode();
+  };
+
+  public static readonly Warnning = (): NodeType => {
+    const inputIntanceValue = new BaseComponent('heading', 'h1', 'not yet completed!'.toLocaleUpperCase());
+    return inputIntanceValue.getNode();
+  };
+
   public static readonly start = (): void => {
-    Nodes.formPickNode.append(this.startButton(), this.soundButton());
-    Nodes.main.append(Nodes.h1, Nodes.formPickNode);
+    Nodes.labelDurationNode.append(this.inputDuration());
+    Nodes.formPickNode.append(this.startButton(), this.soundButton()); // TODO: add Nodes.labelDurationNode
+    Nodes.main.append(Nodes.h1, Nodes.formPickNode, this.Warnning());
   };
 }
