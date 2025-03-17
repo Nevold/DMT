@@ -58,7 +58,7 @@ export class HashRouter {
 
   public static readonly navigateTo = (path: string): void => {
     globalThis.location.hash = path.startsWith('/') ? path : `/${path}`;
-    globalThis.history.pushState({}, '', `#${path}`);
+    // globalThis.history.pushState({}, '', `#${path}`);
     this.handleHashChange();
   };
 }
