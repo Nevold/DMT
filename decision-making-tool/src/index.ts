@@ -7,8 +7,6 @@ import './global.css';
 import { HashRouter } from './services/router.service';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // globalThis.addEventListener('load', () => {
-
   if (!globalThis.location.hash) {
     globalThis.location.hash = '#/';
   }
@@ -32,5 +30,4 @@ document.addEventListener('DOMContentLoaded', () => {
     Nodes.main.replaceChildren();
     NotFound.start();
   });
-  // });
 });

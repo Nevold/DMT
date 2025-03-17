@@ -17,26 +17,6 @@ export class BaseComponent {
     return this.node;
   }
 
-  public addContent(text: string): void {
-    this.node.textContent = text;
-  }
-
-  public addClass(classNameClassName: string): void {
-    this.node.classList.add(classNameClassName);
-  }
-
-  public toggleClass(className: string): void {
-    this.node.classList.toggle(className);
-  }
-
-  public removeClass(className: string): void {
-    this.node.classList.remove(className);
-  }
-
-  public destroyNode(): void {
-    this.node.remove();
-  }
-
   public setAttributeOptions(atrr: string, value: string): void {
     this.node.setAttribute(atrr, `option${value}`);
   }
