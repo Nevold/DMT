@@ -204,6 +204,7 @@ textarea {
   display: grid;
   grid-template: 'back-button sound duration-label' 1fr 'pick-button pick-button pick-button' 1fr / 1fr 1fr;
   gap: 0.5rem;
+  align-items: flex-start;
   margin-inline: auto;
   transition-duration: var(--transition-duration);
 }
@@ -226,6 +227,7 @@ textarea {
   grid-area: duration-label;
   gap: 0.5rem;
   align-items: center;
+  margin-top: 0.5rem;
   padding-left: 0.5rem;
   border-radius: 0.25rem;
   color: var(--color-primary);
