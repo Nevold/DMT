@@ -23,4 +23,6 @@ export class Nodes {
   public static readonly formPickNode = new BaseComponent('container-pick', 'form').getNode();
 
   public static readonly labelDurationNode = new BaseComponent('duration-label', 'label', 'Time').getNode();
+
+  public static readonly canvas = new BaseComponent('wheel', 'canvas').getNode();
 }

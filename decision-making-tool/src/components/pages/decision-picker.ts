@@ -1,6 +1,7 @@
 import { HashRouter } from '../../services/router.service';
 import type { NodeType } from '../../types/types';
 import { BaseComponent } from '../base-component';
+import { TimedRotatingCircle } from '../controls/canvas';
 import { Nodes } from '../nodes';
 
 export class DecisionPicker {
@@ -33,6 +34,14 @@ export class DecisionPicker {
     buttonIntanceValue.getNode().addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
+        if (Nodes.canvas instanceof HTMLCanvasElement) {
+          const circle = new TimedRotatingCircle(Nodes.canvas, '#2196f3', 5000);
+
+          circle.startAnimation(() => {
+            console.log('Анимация завершена!');
+            // Дополнительные действия после завершения
+          });
+        }
       }
     });
 
@@ -51,17 +60,19 @@ export class DecisionPicker {
   };
 
   public static readonly canvas = (): NodeType => {
-    const canvasIntanceValue = new BaseComponent('wheel', 'canvas');
-    canvasIntanceValue.setAttributes({ width: '400', height: '400' });
+    // const canvasIntanceValue = new BaseComponent('wheel', 'canvas');
+    // canvasIntanceValue.setAttributes({ width: '400', height: '400' });
+    Nodes.canvas.setAttribute('width', '400');
+    Nodes.canvas.setAttribute('height', '400');
 
-    const canvas = canvasIntanceValue.getNode();
+    // const [canvas] = Nodes.canvas;
 
-    if (canvas instanceof HTMLCanvasElement) {
-      const context = canvas.getContext('2d');
+    if (Nodes.canvas instanceof HTMLCanvasElement) {
+      const context = Nodes.canvas.getContext('2d');
 
       if (context) {
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
+        const centerX = Nodes.canvas.width / 2;
+        const centerY = Nodes.canvas.height / 2;
         const radius = 100;
 
         context.beginPath();
@@ -99,13 +110,13 @@ export class DecisionPicker {
         context.textAlign = 'center';
         context.textBaseline = 'middle';
 
-        const x = canvas.width / 2;
-        const y = canvas.height / 2;
+        const x = Nodes.canvas.width / 2;
+        const y = Nodes.canvas.height / 2;
 
         context.fillText('not yet completed!'.toLocaleUpperCase(), x, y);
       }
     }
-    return canvas;
+    return Nodes.canvas;
   };
 
   public static readonly start = (): void => {
