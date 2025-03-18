@@ -21,7 +21,8 @@ export class TimedRotatingCircle {
 
   constructor(
     public canvas: HTMLCanvasElement,
-    public duration: number = 5000
+    public duration: number = Constants.DEFAULT_DURATION,
+    public sectors: Array<number> = []
   ) {
     this.ctx = canvas.getContext('2d');
     this.handleResize();
@@ -44,29 +45,36 @@ export class TimedRotatingCircle {
       this.ctx.fillStyle = '#003434a3';
       this.ctx.fill();
       this.ctx.strokeStyle = '#fff';
-      this.ctx.lineWidth = 1;
+      this.ctx.lineWidth = 2;
       this.ctx.stroke();
 
       this.ctx.beginPath();
       this.ctx.arc(0, 0, Constants.SMALL_RADIUS, 0, 2 * Math.PI);
-      this.ctx.fillStyle = '#d6c226';
+      this.ctx.fillStyle = '#fff';
       this.ctx.fill();
-      this.ctx.strokeStyle = '#003838';
-      this.ctx.lineWidth = 1;
+      this.ctx.strokeStyle = '#fff';
+      this.ctx.lineWidth = 2;
       this.ctx.stroke();
 
-      // Маркер направления вращения
-      this.ctx.beginPath();
-      this.ctx.moveTo(this.radius * 0.8, 0);
-      this.ctx.lineTo(this.radius, 0);
-      this.ctx.strokeStyle = '#000';
-      this.ctx.lineWidth = 3;
-      this.ctx.stroke();
+      const angleStep = (Math.PI * 2) / 3;
 
-      this.ctx.font = '10px Arial';
-      this.ctx.fillStyle = 'blue';
+      for (let index = 0; index < 3; index += 1) {
+        const currentAngle = angleStep * index;
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, 0);
+        this.ctx.lineTo(Math.cos(currentAngle) * this.radius, Math.sin(currentAngle) * this.radius);
+
+        this.ctx.strokeStyle = '#fff';
+        this.ctx.lineWidth = 1;
+        this.ctx.stroke();
+      }
+
+      this.ctx.font = '16px Arial';
+      this.ctx.fillStyle = 'Black';
       this.ctx.textAlign = 'center';
       this.ctx.textBaseline = 'middle';
+
       this.ctx.fillText('not yet completed!'.toLocaleUpperCase(), 0, 0);
 
       this.ctx.restore();

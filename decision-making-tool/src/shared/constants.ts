@@ -8,4 +8,8 @@ export class Constants {
   public static readonly RADIUS = 100;
 
   public static readonly SMALL_RADIUS = 10;
+
+  public static readonly SECTOR_TEMP = [Math.PI / 2, Math.PI / 1.5, Math.PI / 3, Math.PI / 2];
+
+  public static readonly DEFAULT_DURATION = 5000;
 }
