@@ -1,11 +1,19 @@
+import { Constants } from '../../shared/constants';
+
 export class TimedRotatingCircle {
   public ctx: CanvasRenderingContext2D;
 
-  public centerX: number;
+  // public centerX: number;
 
-  public centerY: number;
+  // public centerY: number;
 
-  public radius: number;
+  // public radius: number;
+
+  public readonly centerX = +Constants.SIZE / 2;
+
+  public readonly centerY = +Constants.SIZE / 2;
+
+  public readonly radius = Constants.RADIUS;
 
   public angle: number = 0;
 
@@ -25,14 +33,14 @@ export class TimedRotatingCircle {
     this.ctx = canvas.getContext('2d')!;
     this.handleResize();
     window.addEventListener('resize', this.handleResize);
-    this.centerX = this.canvas.width / 2;
-    this.centerY = this.canvas.height / 2;
-    this.radius = Math.min(this.canvas.width, this.canvas.height) * 0.25;
+    // this.centerX = this.canvas.width / 2;
+    // this.centerY = this.canvas.height / 2;
+    // this.radius = Math.min(this.canvas.width, this.canvas.height) * 0.25;
   }
 
   public handleResize = (): void => {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    // this.canvas.width = window.innerWidth;
+    // this.canvas.height = window.innerHeight;
 
     // Перерисовываем при изменении размера, если анимация не активна
     if (!this.isAnimating) this.draw();

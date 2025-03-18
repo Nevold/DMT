@@ -1,4 +1,5 @@
 import { HashRouter } from '../../services/router.service';
+import { Constants } from '../../shared/constants';
 import type { NodeType } from '../../types/types';
 import { BaseComponent } from '../base-component';
 import { TimedRotatingCircle } from '../controls/canvas';
@@ -62,8 +63,8 @@ export class DecisionPicker {
   public static readonly canvas = (): NodeType => {
     // const canvasIntanceValue = new BaseComponent('wheel', 'canvas');
     // canvasIntanceValue.setAttributes({ width: '400', height: '400' });
-    Nodes.canvas.setAttribute('width', '400');
-    Nodes.canvas.setAttribute('height', '400');
+    Nodes.canvas.setAttribute('width', Constants.SIZE);
+    Nodes.canvas.setAttribute('height', Constants.SIZE);
 
     // const [canvas] = Nodes.canvas;
 
@@ -73,7 +74,7 @@ export class DecisionPicker {
       if (context) {
         const centerX = Nodes.canvas.width / 2;
         const centerY = Nodes.canvas.height / 2;
-        const radius = 100;
+        const radius = Constants.RADIUS;
 
         context.beginPath();
         context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
@@ -84,7 +85,7 @@ export class DecisionPicker {
         context.stroke();
 
         for (let index = 0; index < 8; index += 1) {
-          const angle = (Math.PI * 2 * index) / 8; // Угол для каждой линии
+          const angle = (Math.PI * 2 * index) / 8;
           const edgeX = centerX + radius * Math.cos(angle);
           const edgeY = centerY + radius * Math.sin(angle);
 
