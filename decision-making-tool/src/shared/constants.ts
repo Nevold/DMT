@@ -6,4 +6,6 @@ export class Constants {
   public static readonly SIZE = '400';
 
   public static readonly RADIUS = 100;
+
+  public static readonly SMALL_RADIUS = 10;
 }

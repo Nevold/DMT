@@ -36,12 +36,8 @@ export class DecisionPicker {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
         if (Nodes.canvas instanceof HTMLCanvasElement) {
-          const circle = new TimedRotatingCircle(Nodes.canvas, '#2196f3', 5000);
-
-          circle.startAnimation(() => {
-            console.log('Анимация завершена!');
-            // Дополнительные действия после завершения
-          });
+          const circle = new TimedRotatingCircle(Nodes.canvas, 5000);
+          circle.startAnimation();
         }
       }
     });
@@ -68,54 +64,58 @@ export class DecisionPicker {
 
     // const [canvas] = Nodes.canvas;
 
+    // if (Nodes.canvas instanceof HTMLCanvasElement) {
+    //   const context = Nodes.canvas.getContext('2d');
+
+    //   if (context) {
+    //     const centerX = Nodes.canvas.width / 2;
+    //     const centerY = Nodes.canvas.height / 2;
+    //     const radius = Constants.RADIUS;
+
+    //     context.beginPath();
+    //     context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    //     context.fillStyle = '#003434a3';
+    //     context.fill();
+    //     context.strokeStyle = '#fff';
+    //     context.lineWidth = 1;
+    //     context.stroke();
+
+    //     for (let index = 0; index < 8; index += 1) {
+    //       const angle = (Math.PI * 2 * index) / 8;
+    //       const edgeX = centerX + radius * Math.cos(angle);
+    //       const edgeY = centerY + radius * Math.sin(angle);
+
+    //       context.beginPath();
+    //       context.moveTo(centerX, centerY);
+    //       context.lineTo(edgeX, edgeY);
+    //       context.strokeStyle = '#fff';
+    //       context.stroke();
+    //     }
+
+    //     const radius2 = 10;
+
+    //     context.beginPath();
+    //     context.arc(centerX, centerY, radius2, 0, 2 * Math.PI);
+    //     context.fillStyle = 'red';
+    //     context.fill();
+    //     context.strokeStyle = 'black';
+    //     context.lineWidth = 1;
+    //     context.stroke();
+
+    //     context.font = '10px Arial';
+    //     context.fillStyle = 'blue';
+    //     context.textAlign = 'center';
+    //     context.textBaseline = 'middle';
+
+    //     const x = Nodes.canvas.width / 2;
+    //     const y = Nodes.canvas.height / 2;
+
+    //     context.fillText('not yet completed!'.toLocaleUpperCase(), x, y);
+    //   }
+    // }
     if (Nodes.canvas instanceof HTMLCanvasElement) {
-      const context = Nodes.canvas.getContext('2d');
-
-      if (context) {
-        const centerX = Nodes.canvas.width / 2;
-        const centerY = Nodes.canvas.height / 2;
-        const radius = Constants.RADIUS;
-
-        context.beginPath();
-        context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-        context.fillStyle = '#003434a3';
-        context.fill();
-        context.strokeStyle = '#fff';
-        context.lineWidth = 1;
-        context.stroke();
-
-        for (let index = 0; index < 8; index += 1) {
-          const angle = (Math.PI * 2 * index) / 8;
-          const edgeX = centerX + radius * Math.cos(angle);
-          const edgeY = centerY + radius * Math.sin(angle);
-
-          context.beginPath();
-          context.moveTo(centerX, centerY);
-          context.lineTo(edgeX, edgeY);
-          context.strokeStyle = '#fff';
-          context.stroke();
-        }
-
-        const radius2 = 10;
-
-        context.beginPath();
-        context.arc(centerX, centerY, radius2, 0, 2 * Math.PI);
-        context.fillStyle = 'red';
-        context.fill();
-        context.strokeStyle = 'black';
-        context.lineWidth = 1;
-        context.stroke();
-
-        context.font = '10px Arial';
-        context.fillStyle = 'blue';
-        context.textAlign = 'center';
-        context.textBaseline = 'middle';
-
-        const x = Nodes.canvas.width / 2;
-        const y = Nodes.canvas.height / 2;
-
-        context.fillText('not yet completed!'.toLocaleUpperCase(), x, y);
-      }
+      const circle = new TimedRotatingCircle(Nodes.canvas, 5000);
+      circle.draw();
     }
     return Nodes.canvas;
   };
