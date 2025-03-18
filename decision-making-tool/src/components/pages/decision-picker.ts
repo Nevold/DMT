@@ -51,6 +51,7 @@ export class DecisionPicker {
   };
 
   public static readonly start = (): void => {
+    Nodes.labelDurationNode.textContent = 'Time';
     Nodes.labelDurationNode.append(this.inputDuration());
     Nodes.formPickNode.append(this.startButton(), this.soundButton(), Nodes.labelDurationNode, this.startPickButton());
     Nodes.main.append(Nodes.h1, Nodes.formPickNode, this.Warnning());
