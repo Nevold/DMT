@@ -241,9 +241,14 @@ textarea {
   border-radius: 0 0.25rem 0.25rem 0;
   line-height: normal;
   color: var(--color-primary);
-  background-color: var(--color-primary-800);
+  appearance: textfield;
+  background-color: var(--color-primary-8);
   outline: none;
   box-shadow: 0 0 0.25rem 0.1rem var(--color-primary-2);
   transition-duration: var(--transition-duration);
   transition-property: box-shadow;
+}
+
+.pick-button {
+  grid-area: pick-button;
 }

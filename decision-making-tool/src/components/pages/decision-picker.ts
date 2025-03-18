@@ -28,6 +28,17 @@ export class DecisionPicker {
     return buttonIntanceValue.getNode();
   };
 
+  public static readonly startPickButton = (): NodeType => {
+    const buttonIntanceValue = new BaseComponent(['pick-button', 'button'], 'button', 'Start');
+    buttonIntanceValue.getNode().addEventListener('click', event => {
+      if (event.target && event.target instanceof HTMLButtonElement) {
+        event.preventDefault();
+      }
+    });
+
+    return buttonIntanceValue.getNode();
+  };
+
   public static readonly inputDuration = (): NodeType => {
     const inputIntanceValue = new BaseComponent('duration-input', 'input');
     inputIntanceValue.setAttributes({ min: '5', placeholder: 'sec', type: 'number', value: '6' });
@@ -41,7 +52,7 @@ export class DecisionPicker {
 
   public static readonly start = (): void => {
     Nodes.labelDurationNode.append(this.inputDuration());
-    Nodes.formPickNode.append(this.startButton(), this.soundButton()); // TODO: add Nodes.labelDurationNode
+    Nodes.formPickNode.append(this.startButton(), this.soundButton(), Nodes.labelDurationNode, this.startPickButton());
     Nodes.main.append(Nodes.h1, Nodes.formPickNode, this.Warnning());
   };
 }
