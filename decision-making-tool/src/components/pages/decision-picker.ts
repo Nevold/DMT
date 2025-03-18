@@ -80,7 +80,7 @@ export class DecisionPicker {
           context.beginPath();
           context.moveTo(centerX, centerY);
           context.lineTo(edgeX, edgeY);
-          context.strokeStyle = 'blue';
+          context.strokeStyle = '#fff';
           context.stroke();
         }
 
@@ -93,6 +93,16 @@ export class DecisionPicker {
         context.strokeStyle = 'black';
         context.lineWidth = 1;
         context.stroke();
+
+        context.font = '10px Arial';
+        context.fillStyle = 'blue';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+
+        const x = canvas.width / 2;
+        const y = canvas.height / 2;
+
+        context.fillText('not yet completed!'.toLocaleUpperCase(), x, y);
       }
     }
     return canvas;
