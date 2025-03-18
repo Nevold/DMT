@@ -50,10 +50,58 @@ export class DecisionPicker {
     return inputIntanceValue.getNode();
   };
 
+  public static readonly canvas = (): NodeType => {
+    const canvasIntanceValue = new BaseComponent('wheel', 'canvas');
+    canvasIntanceValue.setAttributes({ width: '400', height: '400' });
+
+    const canvas = canvasIntanceValue.getNode();
+
+    if (canvas instanceof HTMLCanvasElement) {
+      const context = canvas.getContext('2d');
+
+      if (context) {
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 100;
+
+        context.beginPath();
+        context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+        context.fillStyle = '#003434a3';
+        context.fill();
+        context.strokeStyle = '#fff';
+        context.lineWidth = 1;
+        context.stroke();
+
+        for (let index = 0; index < 8; index += 1) {
+          const angle = (Math.PI * 2 * index) / 8; // Угол для каждой линии
+          const edgeX = centerX + radius * Math.cos(angle);
+          const edgeY = centerY + radius * Math.sin(angle);
+
+          context.beginPath();
+          context.moveTo(centerX, centerY);
+          context.lineTo(edgeX, edgeY);
+          context.strokeStyle = 'blue';
+          context.stroke();
+        }
+
+        const radius2 = 10;
+
+        context.beginPath();
+        context.arc(centerX, centerY, radius2, 0, 2 * Math.PI);
+        context.fillStyle = 'red';
+        context.fill();
+        context.strokeStyle = 'black';
+        context.lineWidth = 1;
+        context.stroke();
+      }
+    }
+    return canvas;
+  };
+
   public static readonly start = (): void => {
     Nodes.labelDurationNode.textContent = 'Time';
     Nodes.labelDurationNode.append(this.inputDuration());
     Nodes.formPickNode.append(this.startButton(), this.soundButton(), Nodes.labelDurationNode, this.startPickButton());
-    Nodes.main.append(Nodes.h1, Nodes.formPickNode, this.Warnning());
+    Nodes.main.append(Nodes.h1, Nodes.formPickNode, this.canvas(), this.Warnning());
   };
 }
