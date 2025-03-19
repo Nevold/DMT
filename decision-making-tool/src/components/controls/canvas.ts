@@ -65,7 +65,7 @@ export class TimedRotatingCircle {
 
       for (let index = 0; index < optionList.length; index += 1) {
         const angleStep = (Math.PI * 2) / sumWeight;
-        const currentAngle = angleStep * Number(optionList[index].weight) * index;
+        const currentAngle = angleStep * Number(optionList[index].weight);
 
         this.ctx.beginPath();
         this.ctx.moveTo(0, 0);
@@ -74,6 +74,24 @@ export class TimedRotatingCircle {
         this.ctx.strokeStyle = '#fff';
         this.ctx.lineWidth = 1;
         this.ctx.stroke();
+
+        //         let currentAngle = 0; // Начинаем с угла 0
+        // const radiusOffset = this.radius * 0.6;
+        // const weight = Number(optionList[index].weight);
+        // const angleIncrement = (Math.PI * 2) / sumWeight * weight; // Угол секции
+
+        // // Средний угол секции
+        // const midAngle = currentAngle + angleIncrement / 2;
+
+        // // Координаты для текста
+        // const x = Math.cos(midAngle) * radiusOffset;
+        // const y = Math.sin(midAngle) * radiusOffset;
+
+        // // Рисуем текст
+        // this.ctx.fillText('TEXT', x, y);
+
+        // // Обновляем текущий угол для следующей секции
+        // currentAngle += angleIncrement;
       }
 
       this.ctx.font = '16px Arial';
