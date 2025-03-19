@@ -1,3 +1,4 @@
+import { StorageService } from '../../services/local-storage.service';
 import { Constants } from '../../shared/constants';
 
 export class TimedRotatingCircle {
@@ -33,6 +34,12 @@ export class TimedRotatingCircle {
   };
 
   public draw(): void {
+    StorageService.getData();
+    const optionList = StorageService.data.list;
+    const sumWeight = optionList
+      .map(element => element.weight)
+      .reduce((accumulator, current) => Number(accumulator) + Number(current), 0);
+
     if (this.ctx) {
       this.ctx.save();
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -56,10 +63,9 @@ export class TimedRotatingCircle {
       this.ctx.lineWidth = 2;
       this.ctx.stroke();
 
-      const angleStep = (Math.PI * 2) / 3;
-
-      for (let index = 0; index < 3; index += 1) {
-        const currentAngle = angleStep * index;
+      for (let index = 0; index < optionList.length; index += 1) {
+        const angleStep = (Math.PI * 2) / sumWeight;
+        const currentAngle = angleStep * Number(optionList[index].weight) * index;
 
         this.ctx.beginPath();
         this.ctx.moveTo(0, 0);
