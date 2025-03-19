@@ -29,6 +29,10 @@ export class TimedRotatingCircle {
     this.handleResize();
   }
 
+  public static easeInOutQuad(t: number): number {
+    return t < 0.5 ? 5 * t * t : -1 + (4 - 2 * t) * t;
+  }
+
   public handleResize = (): void => {
     if (!this.isAnimating) this.draw();
   };
@@ -101,9 +105,10 @@ export class TimedRotatingCircle {
     }
   }
 
-  public update(): void {
-    this.angle += this.angularVelocity;
-    if (this.angle > Math.PI * 2) this.angle -= Math.PI * 2;
+  public update(angle: number): void {
+    const angleDelta = Math.PI * 2 * angle;
+    this.angle += angleDelta;
+    // if (this.angle > Math.PI * 2) this.angle -= Math.PI * 2;
   }
 
   public startAnimation(): void {
@@ -115,8 +120,11 @@ export class TimedRotatingCircle {
     const animate = (timestamp: number): void => {
       const elapsed = timestamp - this.startTime;
 
-      if (elapsed < this.duration) {
-        this.update();
+      const progress = Math.min(elapsed / this.duration, 1);
+      const easedProgress = TimedRotatingCircle.easeInOutQuad(progress);
+
+      if (progress < 1) {
+        this.update(easedProgress);
         this.draw();
         this.animationId = requestAnimationFrame(animate);
       } else {
