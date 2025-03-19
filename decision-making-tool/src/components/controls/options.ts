@@ -75,9 +75,11 @@ export class Options {
         const id = event.target.getAttribute('id');
         if (id) {
           const idValue = id.split('option-').pop();
+          const listOptions = StorageService.data.list.filter(element => element.id !== idValue);
+
           const storageData = {
-            list: StorageService.data.list.filter(element => element.id !== idValue),
-            lastId: StorageService.data.lastId
+            list: listOptions,
+            lastId: listOptions.length === 0 ? 0 : StorageService.data.lastId
           };
           StorageService.data = Utils.sortById(storageData);
           StorageService.saveData(Utils.sortById(storageData));
