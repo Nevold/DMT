@@ -86,7 +86,14 @@ export class Modal {
     Nodes.dialogListNode.append(this.form());
     Nodes.dialogListNode.addEventListener('click', event => {
       if (event.target === Nodes.dialogListNode && Nodes.dialogListNode instanceof HTMLDialogElement) {
-        // document.body.classList.remove('no-scroll');
+        Nodes.dialogListNode.close();
+        this.clearDialog();
+      }
+    });
+
+    document.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && Nodes.dialogListNode instanceof HTMLDialogElement) {
+        Nodes.dialogListNode.close();
         this.clearDialog();
       }
     });

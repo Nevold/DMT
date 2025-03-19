@@ -31,6 +31,12 @@ export class OptionsModal {
         this.closeDialog();
       }
     });
+
+    document.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && Nodes.dialogOptionsNode instanceof HTMLDialogElement) {
+        this.closeDialog();
+      }
+    });
     return Nodes.dialogOptionsNode;
   };
 
