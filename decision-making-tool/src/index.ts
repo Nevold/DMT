@@ -1,5 +1,4 @@
 import { Options } from './components/controls/options';
-import { OptionsModal } from './components/controls/options-modal';
 import { Nodes } from './components/nodes';
 import { DecisionPicker } from './components/pages/decision-picker';
 import { ListOfOptions } from './components/pages/list-of-options';
