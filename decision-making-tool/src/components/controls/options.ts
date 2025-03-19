@@ -174,7 +174,7 @@ export class Options {
         });
 
         reader.readAsText(file, 'ascii');
-        event.target.value = '';
+        input.value = '';
       }
     });
 
