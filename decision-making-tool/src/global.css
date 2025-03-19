@@ -254,3 +254,7 @@ textarea {
 .pick-button {
   grid-area: pick-button;
 }
+
+.no-scroll {
+  overflow: hidden;
+}

@@ -15,6 +15,7 @@ export class Buttons {
         event.preventDefault();
         Nodes.main.append(Modal.dialog());
         Nodes.dialogListNode.showModal();
+        document.body.classList.add('no-scroll');
       }
     });
     return buttonIntanceValue.getNode();
@@ -54,6 +55,7 @@ export class Buttons {
           Nodes.main.append(OptionsModal.dialog());
           if (Nodes.dialogOptionsNode instanceof HTMLDialogElement) {
             Nodes.dialogOptionsNode.showModal();
+            document.body.classList.add('no-scroll');
           }
         }
       }

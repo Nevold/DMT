@@ -35,6 +35,7 @@ export class OptionsModal {
   };
 
   public static readonly closeDialog = (): void => {
+    document.body.classList.remove('no-scroll');
     if (Nodes.dialogOptionsNode instanceof HTMLDialogElement) {
       Nodes.dialogOptionsNode.close();
       this.wrapperNode.replaceChildren();

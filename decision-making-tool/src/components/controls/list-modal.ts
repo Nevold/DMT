@@ -86,7 +86,7 @@ export class Modal {
     Nodes.dialogListNode.append(this.form());
     Nodes.dialogListNode.addEventListener('click', event => {
       if (event.target === Nodes.dialogListNode && Nodes.dialogListNode instanceof HTMLDialogElement) {
-        Nodes.dialogListNode.close();
+        document.body.classList.remove('no-scroll');
         this.clearDialog();
       }
     });
@@ -94,6 +94,7 @@ export class Modal {
   };
 
   public static readonly clearDialog = (): void => {
+    document.body.classList.remove('no-scroll');
     if (
       Nodes.dialogListNode instanceof HTMLDialogElement &&
       this.formNode instanceof HTMLFormElement &&
