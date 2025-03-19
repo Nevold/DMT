@@ -6,7 +6,9 @@ import { TimedRotatingCircle } from '../controls/canvas';
 import { Nodes } from '../nodes';
 
 export class DecisionPicker {
-  public static readonly startButton = (): NodeType => {
+  public static durationTime = 5;
+
+  public static readonly backButton = (): NodeType => {
     const buttonIntanceValue = new BaseComponent(['button', 'back-button'], 'button', 'Back');
     buttonIntanceValue.getNode().addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
@@ -36,7 +38,7 @@ export class DecisionPicker {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
         if (Nodes.canvas instanceof HTMLCanvasElement) {
-          const circle = new TimedRotatingCircle(Nodes.canvas, Constants.DEFAULT_DURATION, Constants.SECTOR_TEMP);
+          const circle = new TimedRotatingCircle(Nodes.canvas, this.durationTime * 1000, Constants.SECTOR_TEMP);
           circle.startAnimation();
         }
       }
@@ -48,6 +50,12 @@ export class DecisionPicker {
   public static readonly inputDuration = (): NodeType => {
     const inputIntanceValue = new BaseComponent('duration-input', 'input');
     inputIntanceValue.setAttributes({ min: '5', placeholder: 'sec', type: 'number', value: '6' });
+    inputIntanceValue.getNode().addEventListener('input', event => {
+      if (event.target && event.target instanceof HTMLInputElement) {
+        this.durationTime = Number(event.target.value);
+      }
+    });
+
     return inputIntanceValue.getNode();
   };
 
@@ -56,7 +64,7 @@ export class DecisionPicker {
     Nodes.canvas.setAttribute('height', Constants.SIZE);
 
     if (Nodes.canvas instanceof HTMLCanvasElement) {
-      const circle = new TimedRotatingCircle(Nodes.canvas, Constants.DEFAULT_DURATION, Constants.SECTOR_TEMP);
+      const circle = new TimedRotatingCircle(Nodes.canvas, this.durationTime * 1000, Constants.SECTOR_TEMP);
       circle.draw();
     }
     return Nodes.canvas;
@@ -65,7 +73,7 @@ export class DecisionPicker {
   public static readonly start = (): void => {
     Nodes.labelDurationNode.textContent = 'Time';
     Nodes.labelDurationNode.append(this.inputDuration());
-    Nodes.formPickNode.append(this.startButton(), this.soundButton(), Nodes.labelDurationNode, this.startPickButton());
+    Nodes.formPickNode.append(this.backButton(), this.soundButton(), Nodes.labelDurationNode, this.startPickButton());
     Nodes.main.append(Nodes.h1, Nodes.formPickNode, this.canvas());
   };
 }
