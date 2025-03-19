@@ -30,7 +30,7 @@ export class TimedRotatingCircle {
   }
 
   public static easeInOutQuad(t: number): number {
-    return t < 0.5 ? 5 * t * t : -1 + (4 - 2 * t) * t;
+    return t < 0.5 ? 1.5 * t * t : -1 + (4 - 2 * t) * t;
   }
 
   public handleResize = (): void => {
@@ -94,13 +94,6 @@ export class TimedRotatingCircle {
         currentAngle += angleStep * Number(optionList[index].weight);
       }
 
-      this.ctx.font = '16px Arial';
-      this.ctx.fillStyle = 'Black';
-      this.ctx.textAlign = 'center';
-      this.ctx.textBaseline = 'middle';
-
-      this.ctx.fillText('not yet completed!'.toLocaleUpperCase(), 0, 0);
-
       this.ctx.restore();
     }
   }
@@ -108,7 +101,7 @@ export class TimedRotatingCircle {
   public update(angle: number): void {
     const angleDelta = Math.PI * 2 * angle;
     this.angle += angleDelta;
-    // if (this.angle > Math.PI * 2) this.angle -= Math.PI * 2;
+    if (this.angle > Math.PI * 2) this.angle -= Math.PI * 2;
   }
 
   public startAnimation(): void {
