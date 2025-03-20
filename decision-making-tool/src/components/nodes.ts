@@ -25,4 +25,12 @@ export class Nodes {
   public static readonly labelDurationNode = new BaseComponent('duration-label', 'label', 'Time').getNode();
 
   public static readonly canvas = new BaseComponent('wheel', 'canvas').getNode();
+
+  public static backButtonNodePicker = new BaseComponent(['button', 'back-button'], 'button', 'Back').getNode();
+
+  public static soundButtonNode = new BaseComponent(['sound', 'button'], 'button', 'Sound').getNode();
+
+  public static startPickButtonNode = new BaseComponent(['pick-button', 'button'], 'button', 'Start').getNode();
+
+  public static inputDurationNode = new BaseComponent('duration-input', 'input').getNode();
 }

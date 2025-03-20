@@ -1,5 +1,6 @@
 import { StorageService } from '../../services/local-storage.service';
 import { Constants } from '../../shared/constants';
+import { Utils } from '../../shared/utils/utils';
 
 export class TimedRotatingCircle {
   public ctx: CanvasRenderingContext2D | null;
@@ -122,9 +123,11 @@ export class TimedRotatingCircle {
         this.animationId = requestAnimationFrame(animate);
       } else {
         this.stopAnimation();
+        Utils.setDisabled(false); //
       }
     };
 
+    Utils.setDisabled(true); //
     this.animationId = requestAnimationFrame(animate);
   }
 

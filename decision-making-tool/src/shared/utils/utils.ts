@@ -1,3 +1,4 @@
+import { Nodes } from '../../components/nodes';
 import type { Database } from '../../types/types';
 
 export class Utils {
@@ -9,4 +10,18 @@ export class Utils {
     });
     return data;
   }
+
+  public static readonly setDisabled = (isDisabled: boolean): void => {
+    if (
+      Nodes.backButtonNodePicker instanceof HTMLButtonElement &&
+      Nodes.soundButtonNode instanceof HTMLButtonElement &&
+      Nodes.startPickButtonNode instanceof HTMLButtonElement &&
+      Nodes.inputDurationNode instanceof HTMLInputElement
+    ) {
+      Nodes.backButtonNodePicker.disabled = isDisabled;
+      Nodes.soundButtonNode.disabled = isDisabled;
+      Nodes.startPickButtonNode.disabled = isDisabled;
+      Nodes.inputDurationNode.disabled = isDisabled;
+    }
+  };
 }

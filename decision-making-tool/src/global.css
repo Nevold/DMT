@@ -258,3 +258,8 @@ textarea {
 .no-scroll {
   overflow: hidden;
 }
+
+button[disabled],
+input[disabled] {
+  opacity: 0.4;
+}

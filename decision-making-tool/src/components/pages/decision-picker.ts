@@ -8,33 +8,32 @@ import { Nodes } from '../nodes';
 export class DecisionPicker {
   public static durationTime = 5;
 
+  public static disabled = false;
+
   public static readonly backButton = (): NodeType => {
-    const buttonIntanceValue = new BaseComponent(['button', 'back-button'], 'button', 'Back');
-    buttonIntanceValue.getNode().addEventListener('click', event => {
+    Nodes.backButtonNodePicker.addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
         HashRouter.navigateTo('/');
       }
     });
 
-    return buttonIntanceValue.getNode();
+    return Nodes.backButtonNodePicker;
   };
 
   public static readonly soundButton = (): NodeType => {
-    const buttonIntanceValue = new BaseComponent(['sound', 'button'], 'button', 'Sound');
-    buttonIntanceValue.getNode().addEventListener('click', event => {
+    Nodes.soundButtonNode.addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
         event.target.classList.toggle('sound-input');
       }
     });
 
-    return buttonIntanceValue.getNode();
+    return Nodes.soundButtonNode;
   };
 
   public static readonly startPickButton = (): NodeType => {
-    const buttonIntanceValue = new BaseComponent(['pick-button', 'button'], 'button', 'Start');
-    buttonIntanceValue.getNode().addEventListener('click', event => {
+    Nodes.startPickButtonNode.addEventListener('click', event => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         event.preventDefault();
         if (Nodes.canvas instanceof HTMLCanvasElement) {
@@ -44,19 +43,21 @@ export class DecisionPicker {
       }
     });
 
-    return buttonIntanceValue.getNode();
+    return Nodes.startPickButtonNode;
   };
 
   public static readonly inputDuration = (): NodeType => {
-    const inputIntanceValue = new BaseComponent('duration-input', 'input');
-    inputIntanceValue.setAttributes({ min: '5', placeholder: 'sec', type: 'number', value: '6' });
-    inputIntanceValue.getNode().addEventListener('input', event => {
+    Nodes.inputDurationNode.setAttribute('min', '5');
+    Nodes.inputDurationNode.setAttribute('placeholder', 'sec');
+    Nodes.inputDurationNode.setAttribute('type', 'number');
+    Nodes.inputDurationNode.setAttribute('value', '7');
+    Nodes.inputDurationNode.addEventListener('input', event => {
       if (event.target && event.target instanceof HTMLInputElement) {
         this.durationTime = Number(event.target.value);
       }
     });
 
-    return inputIntanceValue.getNode();
+    return Nodes.inputDurationNode;
   };
 
   public static readonly canvas = (): NodeType => {
